@@ -32,10 +32,10 @@ We want to create a visualization such that all the problems listed above are so
 There are 7076189 entries, which each have 22 different columns. There is a mix of columns which give different inputs on the crimes such as :
 * The type of the crimes is given by the Primary Type, containing 35 different types of crimes. And the Description, containing 381 different types. Or if there was an Arrest, if it was Domestic.
 * The geographical information on the crimes is given in many different forms. This allows a variety of ways to display the data in a geographical fashion. A few examples are :
- * The Location Description containing 181 types.
- * The District, the Ward and Community Area.
- * X Coordinate and Y Coordinate
- * Latitude and Longitude.
+  * The Location Description containing 181 types.
+  * The District, the Ward and Community Area.
+  * X Coordinate and Y Coordinate
+  * Latitude and Longitude.
 * The date gives the possibility to have a temporal input for the crime.
 
 ### Related Work

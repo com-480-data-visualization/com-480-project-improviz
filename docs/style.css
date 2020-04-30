@@ -1,9 +1,11 @@
 body {
   margin: 0px;
   background-color: #282A2D;
+  font-family: Bitstream Vera Sans Mono;
 }
 
 #part1{
+  padding-top: 70px;
   background-color: #282A2D;
   color: #f4f4f4;
   text-align: center;

@@ -1,21 +1,21 @@
 // set the dimensions and margins of the graph
-var margin = {
+var margin_stream = {
     top: 20,
     right: 30,
     bottom: 30,
     left: 60
   },
   width = 0.8 * window.innerWidth,
-  height = 690 - margin.top - margin.bottom;
+  height = 690 - margin_stream.top - margin_stream.bottom;
 
 // append the svg object to the body of the page
 var svg2 = d3.select("#streamgraph")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("width", width + margin_stream.left + margin_stream.right)
+  .attr("height", height + margin_stream.top + margin_stream.bottom)
   .append("g")
   .attr("transform",
-    "translate(" + margin.left + "," + margin.top + ")");
+    "translate(" + margin_stream.left + "," + margin_stream.top + ")");
 
 
 
@@ -28,14 +28,14 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   var keys = data.columns.slice(1)
 
   // Add X axis
-  var x = d3.scaleLinear()
+  var x_stream = d3.scaleLinear()
     .domain(d3.extent(data, function(d) {
       return d.date;
     }))
     .range([0, 650]);
   svg2.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickSize(-height * 1).tickValues([1, 230]))
+    .call(d3.axisBottom(x_stream).tickSize(-height * 1).tickValues([1, 230]))
     .select(".domain").remove()
 
   svg2.selectAll(".tick line").attr("stroke", "#f2f2f2")
@@ -80,6 +80,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     d3.select(this)
       .style("stroke", "white")
       .style("opacity", 1)
+      .style('fill', '#C57063')
   }
   var mousemove = function(d, i) {
     grp = keys[i]
@@ -87,13 +88,15 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   }
   var mouseleave = function(d) {
     Tooltip.style("opacity", 0)
-    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none")
+    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none").style("fill", function(d) {
+      return color(d.key);
+    })
   }
 
   // Area generator
   var area = d3.area()
     .x(function(d) {
-      return x(d.data.date);
+      return x_stream(d.data.date);
     })
     .y0(function(d) {
       return y(d[0]);

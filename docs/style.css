@@ -37,6 +37,10 @@ body {
   align-content: center;
 }
 
+#maptest{
+  height: 500px;
+}
+
 #streamgraph {
     display: inline-block;
     position: relative;

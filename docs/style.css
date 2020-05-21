@@ -37,8 +37,9 @@ body {
   align-content: center;
 }
 
-#maptest{
+#mapsection{
   height: 500px;
+  width: 100%;
 }
 
 #streamgraph {

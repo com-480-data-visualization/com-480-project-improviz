@@ -37,10 +37,18 @@ body {
   align-content: center;
 }
 
-#mapsection{
+#map{
   height: 500px;
-  width: 100%;
+  width: 50%;
+  float: left;
 }
+
+#mapbuttons{
+  width: 50%;
+  float: right;
+}
+
+
 
 #streamgraph {
     display: inline-block;

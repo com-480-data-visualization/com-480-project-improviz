@@ -37,8 +37,15 @@ body {
   align-content: center;
 }
 
-#maptest{
+#map{
   height: 500px;
+  width: 50%;
+  float: left;
+}
+
+#mapbuttons{
+  width: 50%;
+  float: right;
 }
 
 #streamgraph {

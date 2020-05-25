@@ -4,3 +4,4 @@ datasets/big_datasets
 datasets/.~*
 *.swp
 */__pycache__/
+docs/data/big_data

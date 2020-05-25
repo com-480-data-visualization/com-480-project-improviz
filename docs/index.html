@@ -13,11 +13,26 @@
 </head>
 
 <body style="height: 100%;">
+  <!-- SCRIPTS -->
   <script src="https://d3js.org/d3.v4.js"></script>
 
+
   <!-- LEAFLET TEST -->
-  <div id="maptest">
-    <script src="javascript/maptest.js"></script>
+  <div id="mapsection">
+    <div id="map">
+      <script src="javascript/icons.js"></script>
+      <script src="javascript/areas.js"></script>
+      <script src="javascript/leaflet-providers.js"></script>
+      <script src="javascript/leaflet-heat.js"></script>
+      <script src="javascript/maptest.js"></script>
+    </div>
+
+    <div id="mapbuttons">
+      <button onclick="show_police_stations()">Police stations.</button>
+      <button onclick="show_heatmap()">HeatMap.</button>
+      <button onclick="show_areas()">Areas.</button>
+      <button onclick="test_heatmap()">Test.</button>
+    </div>
   </div>
 
   <div style="background-image: url('img/chicago.jpg'); background-size: cover;height: 100vh;background-color: #282A2D;">

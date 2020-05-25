@@ -3,3 +3,4 @@ datasets/big_datasets
 .ipynb_checkpoints/
 datasets/.~*
 *.swp
+*/__pycache__/

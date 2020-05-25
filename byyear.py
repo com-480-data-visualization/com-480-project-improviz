@@ -14,9 +14,6 @@ def generateByYearCSV(dataset, dates, year):
         # Isolate year
         date = d.split('/', -1)
         y = date[2]
-        if d == '02/07/2003':
-            print("d_set")
-            print(dataset[d])
         # If the year chages, create .csv and start new csv dataset
         if y == year:
             d_arr = np.empty((dataset[d].keys()).size, dtype=np.dtype('U100'))

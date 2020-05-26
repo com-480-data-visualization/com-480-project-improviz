@@ -82,3 +82,9 @@ body {
 	top: 50%;
 	left: 50%;
 }
+
+#cyear {
+	display: none;
+	color: white;
+}
+

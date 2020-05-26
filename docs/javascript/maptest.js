@@ -14,6 +14,8 @@ var interval_sdatemap
 var selectDate = document.getElementById('dateSelect')
 var selectType = document.getElementById('typeSelect')
 var selectSpecialDate = document.getElementById('sdateSelect')
+// houses
+var houses_layers = []
 
 var areas_to_id = {'PORTAGE PARK': 15, 'WEST ENGLEWOOD': 67, 'ENGLEWOOD': 68, 'WASHINGTON PARK': 40, 'HUMBOLDT PARK': 23, 'GRAND BOULEVARD': 38, 'UPTOWN': 3, 'SOUTH SHORE': 43, 'NORTH CENTER': 5, 'NEAR WEST SIDE': 28, 'ALBANY PARK': 14, 'WEST TOWN': 24, 'LOGAN SQUARE': 22, 'NEAR NORTH SIDE': 8, 'NORTH LAWNDALE': 29, 'PULLMAN': 50, 'AUBURN GRESHAM': 71, 'NEW CITY': 61, 'WEST LAWN': 65, 'LOWER WEST SIDE': 31, 'AUSTIN': 25, 'WEST RIDGE': 2, 'EAST GARFIELD PARK': 27, 'KENWOOD': 39, 'DOUGLAS': 35, 'WOODLAWN': 42, 'BELMONT CRAGIN': 19, 'OAKAND': 36, 'ROSELAND': 49, 'LAKEVIEW': 6, 'LOOP': 32, 'NORTH PARK': 13, 'SOUTH DEERING': 51, 'GARFIELD RIDGE': 56, 'BRIDGEPORT': 60, 'LINCOLN SQUARE': 4, 'SOUTH CHICAGO': 46, 'WEST GARFIELD PARK': 26, 'HYDE PARK': 41, 'NEAR SOUTH SIDE': 33, 'ROGERS PARK': 1, 'MONTCLARE': 18, 'WEST PULLMAN': 53, 'AVALON PARK': 45, 'CHICAGO LAWN': 66, 'EDGEWATER': 77, 'WASHINGTON HEIGHTS': 73, 'HEGEWISCH': 55, 'SOUTH LAWNDALE': 30, 'GAGE PARK': 63, 'CHATHAM': 44, 'WEST ELSDON': 62, 'AVONDALE': 21, 'FULLER PARK': 37, 'GREATER GRAND CROSSING': 69, 'ASHBURN': 70, 'IRVING PARK': 16, 'RIVERDALE': 54, 'NORWOOD PARK': 10, 'JEFFERSON PARK': 11, 'BRIGHTON PARK': 58, 'DUNNING': 17, 'LINCOLN PARK': 7, 'EDISON PARK': 9, 'FOREST GLEN': 12, 'HERMOSA': 20, 'ARMOUR SQUARE': 34, 'BURNSIDE': 47, 'CALUMET HEIGHTS': 48, 'EAST SIDE': 52, 'ARCHER HEIGHTS': 57, 'MCKINLEY PARK': 59, 'CLEARING': 64, 'BEVERLY': 72, 'MOUNT GREENWOOD': 74, 'MORGAN PARK': 75, 'OHARE': 76}
 
@@ -106,8 +108,8 @@ function display_heatmap (data) {
   } else if (year_heatmap == 2020) {
     console.log('should stop')
     year_heatmap = 2001
-		month_heatmap = 1
-		enableMapButtons()
+    month_heatmap = 1
+    enableMapButtons()
     clearInterval(interval_heatmap)
     return
   }
@@ -128,6 +130,36 @@ function animate_heatmaps (filepath) {
     stopLoadOverlay()
     interval_heatmap = setInterval(display_heatmap, 10, data)
   })
+}
+
+// function called by button
+function displayHouses (checkboxElem) {
+  startLoadOverlay()
+  disableMapButtons()
+
+  var layers
+  var layer_id = 0
+
+  if (checkboxElem.checked) {
+    d3.csv('data/houses.csv', function (houses_row) {
+      current_layer = null
+
+    // set the marker
+      houses_row.forEach(function (val) {
+        var stationsMarker = L.marker(
+        [val.Latitude, val.Longitude]).addTo(mymap)
+        houses_layers.push(stationsMarker)
+      })
+      enableMapButtons()
+      stopLoadOverlay()
+    })
+  } else {
+    houses_layers.forEach(function (marker) {
+      mymap.removeLayer(marker)
+    })
+    houses_layers = []
+    stopLoadOverlay()
+  }
 }
 
 // function called by button
@@ -157,12 +189,11 @@ function show_police_stations () {
 
 // -------------- END HEATMAPS POLICE STATIONS ---------------------
 
-
 // AREAS
 
 function show_areas () {
   startLoadOverlay()
-	disableMapButtons()
+  disableMapButtons()
 
   var d = document.getElementById('dateSelect')
   var date = d.options[d.selectedIndex].value
@@ -201,7 +232,7 @@ function show_areas () {
 
     current_layers.push(L.geoJSON(areas, {style: style}).addTo(mymap))
     stopLoadOverlay()
-		enableMapButtons()
+    enableMapButtons()
   }).get()
 }
 
@@ -212,10 +243,10 @@ function display_sdate (data, sdate) {
   console.log(sdate)
   if (year_sdatemap == 2020) {
     year_sdatemap = 2001
-		month_sdatemap = 1
+    month_sdatemap = 1
     console.log('should stop')
     clearInterval(interval_sdatemap)
-		enableMapButtons()
+    enableMapButtons()
   } else {
     if (current_sdatemap != null) {
       mymap.removeLayer(current_sdatemap)
@@ -234,7 +265,7 @@ function animate_sdatemaps (data, sdate) {
 
 function show_sdates () {
   startLoadOverlay()
-	disableMapButtons()
+  disableMapButtons()
   var sd = document.getElementById('sdateSelect')
   var sdate = sd.options[sd.selectedIndex].value
   clear_map()

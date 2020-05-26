@@ -63,7 +63,22 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .append("path")
     .attr("fill", "#14161A")
     .on("mouseover", function(d) {
+      d3.selectAll("path").transition().duration(0);
       return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement").duration(500);
+    })
+    .on("mouseout", function(d) {
+	    //e.attr("log", 0);
+	    d3.transition().duration(500)
+    .delay(function(d) {
+      return x(d.Date) * 20000;
+    })
+    .attr("fill", "#444B5B")
+    .transition()
+    .duration(5000)
+    .delay(function(d) {
+      return 2000;
+    })
+    .attr("fill", "#14161A")
     })
     .attr("id", "test3")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
@@ -102,9 +117,24 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .enter()
     .append("path")
     .attr("fill", "#14161A")
-    .on("mouseover", function(d) {
-      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement").duration(500);;
+/*    .on("mouseover", function(d) {
+      d3.selectAll("path").transition().duration(0);
+      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement2").duration(500);;
+    })*/
+/*    .on("mouseout", function(d) {
+	    //e.attr("log", 0);
+	    d3.transition().duration(500)
+    .delay(function(d) {
+      return x(d.Date) * 20000;
     })
+    .attr("fill", "#444B5B")
+    .transition()
+    .duration(5000)
+    .delay(function(d) {
+      return 2000;
+    })
+    .attr("fill", "#14161A")
+    })*/
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
       .innerRadius(function(d) {
         return ybis(0)

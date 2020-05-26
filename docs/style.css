@@ -11,8 +11,8 @@ body {
   text-align: center;
 }
 #part2{
-  margin-top: 50px:
-  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50;
   padding-bottom: 30px;
   background-color: #282A2D;
   text-align: center;
@@ -21,7 +21,7 @@ body {
 }
 
 #part3{
-  margin-top: 0px:
+  margin-top: 0px;
   margin-bottom: 50px;
   padding-top: 0px;
   background-color: #f4f4f4;
@@ -31,7 +31,7 @@ body {
 
 #part4{
   padding-top: 50px;
-  margin-top: 50px:
+  margin-top: 50px;
   margin-bottom: 50px;
   background-color: #f4f4f4;
   text-align: center;
@@ -53,28 +53,28 @@ body {
 }
 
 #police{
-  background-color: rgba(255,0,0,0.5);
+  background-color: #232931;
   height: 25%;
   position: relative;
   align-content: center;
 }
 
 #filter_mode{
-  background-color: rgba(0,255,0,0.5);
+  background-color: #393e46;
   height: 25%;
   position: relative;
   align-content: center;
 }
 
 #sdate_mode{
-  background-color: rgba(0,0,255,0.5);
+  background-color: #232931;
   height: 25%;
   position: relative;
   align-content: center;
 }
 
 #aff_houses{
-  background-color: rgba(255,0,255,0.5);
+  background-color: #393e46;
   height: 25%;
   position: relative;
   align-content: center;
@@ -128,31 +128,20 @@ body {
   display:inline-block;
   transition:all .5s;
   border: none;
+  padding: .8em 1em;
+  background:#69779b;
 }
 
-.btn-police:hover {
-  background:#880000;
-  color:#FFFFFF;
+.btn:hover {
+  background:#454f68;
 }
 
-.btn-police {
-  background:#FF0000
+.btn:focus {
+  background:#1f232e;
 }
 
-.btn-filter:hover {
-  background:#008800;
-  color:#FFFFFF;
-}
-
-.btn-filter {
-  background:#00FF00
-}
-
-.btn-sdate:hover {
-  background:#000088;
-  color:#FFFFFF;
-}
-
-.btn-sdate {
-  background:#0000FF
+.centered1 {
+  left: 50%;
+  top: 50%;
+  padding-top: 4em;
 }

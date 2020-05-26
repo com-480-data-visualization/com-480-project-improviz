@@ -31,7 +31,7 @@ var data2 = [{
 var margin = {
     top: 0,
     right: 0,
-    bottom: 80,
+    bottom: 40,
     left: -10
   },
   width_board = window.innerWidth - margin.left - margin.right - 20,
@@ -69,6 +69,8 @@ var textBoardBar = svg_board.append("text")
   .style("text-anchor", "middle")
   .text("");
 
+var savedDataCateg;
+var savedThisCateg;
 // A function that create / update the plot for a given variable:
 function update(data, value_nb) {
 
@@ -80,17 +82,26 @@ function update(data, value_nb) {
 
   // Update the Y axis
   y.domain([0, d3.max(data, function(d) {
+    if (savedDataCateg != null) {
+      textBoardBar.text(savedDataCateg.group + " " + savedDataCateg[value_nb])
+    }
+
     //console.log(Math.max(d[2002 + "-" + place_column], d[2006 + "-" + place_column]))
     //console.log(d3.max(d[2004 + "-" + place_column]))
     return Math.max(parseInt(d[2002 + "-" + place_column]), parseInt(d[2003 + "-" + place_column]), parseInt(d[2004 + "-" + place_column]), parseInt(d[2005 + "-" + place_column]), parseInt(d[2006 + "-" + place_column]), parseInt(d[2007 + "-" + place_column]), parseInt(d[2008 + "-" + place_column]), parseInt(d[2009 + "-" + place_column]))
   })]);
   yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
+  //textBoardBar.text(function(d) {
+  //return d.group + " " + d[value_nb];
+  //})
   // Create the u variable
   var u_stream = svg_board.selectAll("rect")
     .data(data)
     .attr("class", "bar_board")
     .on("mouseover", function(d) {
+      savedDataCateg = d
+      savedThisCateg = this
       textBoardBar.text(d.group + " " + d[value_nb])
       d3.selectAll(".bar_board").attr("fill", "#282A2D")
       d3.select(this).attr('fill', "#C57063")
@@ -110,7 +121,7 @@ function update(data, value_nb) {
     })
     .attr("width", x.bandwidth())
     .attr("height", function(d) {
-
+      d3.select(savedThisCateg).attr('fill', "#C57063")
       //return y(d[2005 + "-" + place_column]);
       return y(d[value_nb]);
     })
@@ -121,6 +132,7 @@ function update(data, value_nb) {
   u_stream
     .exit()
     .remove()
+  d3.select(savedThisCateg).attr('fill', "#C57063")
 }
 
 
@@ -138,23 +150,24 @@ d3.csv("data/Crimes_board.csv", function(error, datapt) {
 
 
 // Initialize the plot with the first dataset
-//update(data1, 'value')
-
-
+//update(dataset_board, "2007-19.0")
+//update(data1, "value")
 
 //==========================================================================
 //                    Select data
 //==========================================================================
 
 
-var width = 650
-var height = 650
-var margin = 40
+var width = 550
+var height = 550
+var margin = 5
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-var radius = Math.min(width - 80, height - 80) / 2 - margin
+
 var radius_place = Math.min(width, height) / 2 - margin
-var radius_blank = Math.min(width - 160, height - 160) / 2 - margin
+var radius_blank_l = Math.min(width - 80, height - 80) / 2 - margin
+var radius = Math.min(width - 100, height - 100) / 2 - margin
+var radius_blank = Math.min(width - 180, height - 180) / 2 - margin
 
 // append the svg object to the div called 'my_dataviz'
 var svg_board_select = d3.select("#the_board_select")
@@ -322,12 +335,29 @@ svg_board_select
     place_column = d.data.key + ".0"
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
-    textInCercle.text("Distric number :" + place_column + " during the year " + date_column)
+    textInCercle1.text("Distric n°" + place_column)
+    textInCercle2.text(date_column)
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
     d3.select(this).attr('fill', "#C57063")
   })
+
+svg_board_select
+  .selectAll('whatever')
+  .data(data_ready_blank)
+  .enter()
+  .append('path')
+  .attr('d', d3.arc()
+    .innerRadius(0)
+    .outerRadius(radius_blank_l)
+  )
+  .attr('fill', function(d) {
+    return "#f4f4f4";
+  })
+  .attr("stroke", "black")
+  .style("stroke-width", "2px")
+  .style("opacity", 1)
 
 svg_board_select
   .selectAll('whatever')
@@ -349,7 +379,8 @@ svg_board_select
     date_column = d.data.key
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
-    textInCercle.text("Distric number :" + place_column + " during the year " + date_column)
+    textInCercle1.text("Distric n°" + place_column)
+    textInCercle2.text(date_column)
     d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_light(d.data.key))
     })
@@ -372,11 +403,20 @@ svg_board_select
   .style("stroke-width", "2px")
   .style("opacity", 1)
 
-var textInCercle = svg_board_select.append("text")
+var textInCercle1 = svg_board_select.append("text")
   .attr("x", 0)
   .attr("y", -60)
   .attr("id", "textInCercle")
   .attr("dy", "2.5em")
-  .attr("font-size", "14px")
+  .attr("font-size", "19px")
   .style("text-anchor", "middle")
-  .text("aaaaaaaaaaaaaaaaaaaaaaaaa");
+  .text("");
+
+var textInCercle2 = svg_board_select.append("text")
+  .attr("x", 0)
+  .attr("y", -40)
+  .attr("id", "textInCercle")
+  .attr("dy", "2.5em")
+  .attr("font-size", "23px")
+  .style("text-anchor", "middle")
+  .text("");

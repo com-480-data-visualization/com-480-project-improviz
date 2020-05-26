@@ -163,6 +163,7 @@ function displayHouses (checkboxElem) {
       mymap.removeLayer(marker)
     })
     houses_layers = []
+		enableMapButtons()
     stopLoadOverlay()
   }
 }

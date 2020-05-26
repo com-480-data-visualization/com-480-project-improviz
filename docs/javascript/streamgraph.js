@@ -56,7 +56,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   // color palette
   var color = d3.scaleOrdinal()
     .domain(keys)
-    .range(['#FAFAFA', '#E7E7E9', '#D4D5D9', '#BEBFC5', '#A3A5AD', '#888A95', '#71737F', '#565861'])
+    .range(['#FAFAFA', '#E7E7E9', '#D4D5D9', '#BEBFC5', '#A3A5AD', '#FFD700', '#FF4500', '#FFA500'])
 
   //stack the data?
   var stackedData = d3.stack()

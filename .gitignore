@@ -2,3 +2,6 @@ datasets/crimes.csv
 datasets/big_datasets
 .ipynb_checkpoints/
 datasets/.~*
+*.swp
+*/__pycache__/
+docs/data/big_data

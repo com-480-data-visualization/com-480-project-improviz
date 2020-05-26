@@ -53,8 +53,6 @@ body {
   float: right;
 }
 
-
-
 #streamgraph {
     display: inline-block;
     position: relative;
@@ -63,7 +61,11 @@ body {
     padding-bottom: 50px;
 }
 
-#load_overlay {
+#textBoardBar{
+  color: #F5F5F5;
+}
+
+#load_overlay{
 	position: fixed;
 	display: none;
 	width: 100%;

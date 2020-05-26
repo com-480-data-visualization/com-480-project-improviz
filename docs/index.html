@@ -20,7 +20,31 @@
 	  <img id="lgif" src="./img/loading_police.gif" style="display: inline-block;">
   </div>
 
-  <!-- LEAFLET TEST -->
+  <!-- Initial circle part 0 -->
+  <div style="background-image: url('img/chicago.jpg'); background-size: cover;height: 100vh;background-color: #282A2D;">
+    <!--<h1 style="text-align: center;">Chicago Crimes 2001 to now</h1> -->
+
+    <!-- Load d3.js -->
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
+
+    <div id="my_dataviz" style="align-content: center;max-width: 600px; margin: auto;"></div>
+
+    <script src="javascript/circle.js"></script>
+
+  </div>
+
+  <!-- Stream graph part 1 -->
+  <div id="part1">
+    <p>
+      Introduction about crimes in chicago with a streamchart (just bellow). On this streamchart each stream is a category of crimes</span>.
+    </p>
+    <div id="streamgraph" style="align-content: center; margin: auto;"></div>
+    <script src="javascript/streamgraph.js"></script>
+    <!--<img src="./img/streamchart.png" style="width:80%;height:600px;"> -->
+  </div>
+
+
+  <!-- Map section part 2 -->
   <div id="mapsection">
     <div id="mapbuttons">
       <button id="show_police_station_button"; onclick="show_police_stations()">Police stations.</button>
@@ -42,34 +66,13 @@
       <script src="javascript/leaflet-heat.js"></script>
       <script src="javascript/maptest.js"></script>
     </div>
-
   </div>
 
-  <div style="background-image: url('img/chicago.jpg'); background-size: cover;height: 100vh;background-color: #282A2D;">
-    <!--<h1 style="text-align: center;">Chicago Crimes 2001 to now</h1> -->
-
-    <!-- Load d3.js -->
-    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3-scale-radial.js"></script>
-
-    <div id="my_dataviz" style="align-content: center;max-width: 600px; margin: auto;"></div>
-
-    <script src="javascript/circle.js"></script>
-
-  </div>
-  <div id="part1">
-    <p>
-      Introduction about crimes in chicago with a streamchart (just bellow). On this streamchart each stream is a category of crimes</span>.
-    </p>
-    <div id="streamgraph" style="align-content: center; margin: auto;"></div>
-    <script src="javascript/streamgraph.js"></script>
-    <!--<img src="./img/streamchart.png" style="width:80%;height:600px;"> -->
-  </div>
-
+  <!-- Statistical section part 3 -->
   <div id="part3">
-    <div id="the_board" style="align-content: center;max-width: 600px; margin: auto;"></div>
+    <div id="the_board_bar" style="align-content: center; margin: 0;"></div>
+    <div id="the_board_select" style="align-content: center; margin: 0;"></div>
     <script src="javascript/board.js"></script>
-    <button onclick="update(data1)">Variable 1</button>
-    <button onclick="update(data2)">Variable 2</button>
     <!--<img src="./img/part3.png" style="width:80%;">-->
   </div>
 

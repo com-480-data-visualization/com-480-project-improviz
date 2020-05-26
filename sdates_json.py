@@ -7,7 +7,7 @@ crimes_df = pd.read_csv('datasets/big_datasets/crimes.csv')
 crimes_no_na_df = crimes_df.dropna()
 sdates_csv = crimes_no_na_df[['Date', 'Latitude', 'Longitude']]
 sdates_csv['Date'] = crimes_no_na_df['Date'].apply(lambda x: x.split()[0])
-sdates_csv['h_val'] = 0.1
+sdates_csv['h_val'] = 90
 
 new_year = '31/12/'
 new_year_eve = '01/01/'

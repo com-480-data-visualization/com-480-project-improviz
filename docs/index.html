@@ -22,6 +22,13 @@
 
   <!-- LEAFLET TEST -->
   <div id="mapsection">
+    <div id="mapbuttons">
+      <button onclick="show_police_stations()">Police stations.</button>
+      <button onclick="show_heatmap()">HeatMap.</button>
+      <button onclick="show_areas()">Areas.</button>
+      <select id="dateSelect"></select>
+      <select id="typeSelect"></select>
+    </div>
     <div id="map">
       <script src="javascript/icons.js"></script>
       <script src="javascript/areas.js"></script>
@@ -30,11 +37,6 @@
       <script src="javascript/maptest.js"></script>
     </div>
 
-    <div id="mapbuttons">
-      <button onclick="show_police_stations()">Police stations.</button>
-      <button onclick="show_heatmap()">HeatMap.</button>
-      <button onclick="show_areas()">Areas.</button>
-    </div>
   </div>
 
   <div style="background-image: url('img/chicago.jpg'); background-size: cover;height: 100vh;background-color: #282A2D;">

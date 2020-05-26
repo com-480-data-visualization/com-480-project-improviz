@@ -17,6 +17,7 @@ body {
   background-color: #282A2D;
   text-align: center;
   align-content: center;
+  height: 1000px;
 }
 
 #part3{
@@ -38,19 +39,51 @@ body {
 }
 
 #map{
-  height: 500px;
-  width: 50%;
+  height: 100%;
+  width: 80%;
   float: left;
+  position: relative;
 }
 
 #mapbuttons{
-  width: 50%;
+  height: 100%;
+  width: 20%;
   float: right;
+  position: relative;
 }
 
-#mapbuttons{
-  width: 50%;
-  float: right;
+#police{
+  background-color: rgba(255,0,0,0.5);
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#filter_mode{
+  background-color: rgba(0,255,0,0.5);
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#sdate_mode{
+  background-color: rgba(0,0,255,0.5);
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#aff_houses{
+  background-color: rgba(255,0,255,0.5);
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#centering{
+	top: 50%;
+	position: absolute;
+  align-content: center;
 }
 
 #streamgraph {

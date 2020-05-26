@@ -247,8 +247,8 @@ function show_areas () {
 function display_sdate (data, sdate) {
   console.log(year_sdatemap)
   console.log(sdate)
-  currentYear.innerHTML = year_sdatemap.toString();
-  currentYear.style.display = 'block'
+  //currentYear.innerHTML = year_sdatemap.toString();
+  //currentYear.style.display = 'block'
   if (year_sdatemap == 2020) {
     year_sdatemap = 2001
     month_sdatemap = 1

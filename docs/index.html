@@ -45,31 +45,35 @@
 
 
   <!-- Map section part 2 -->
-  <div id="mapsection">
-    <div id="mapbuttons">
-      <button id="show_police_station_button"; onclick="show_police_stations()">Police stations.</button>
+  <div id="part2">
+	  <!--div id="mapsection"-->
+	  <div id="mapbuttons">
+	    <div id="police">
+		      <button id="show_police_station_button"; onclick="show_police_stations()">Police stations.</button>
+	    </div>
 
-      <input type="checkbox" id="checkbox_house" default=1 onclick="displayHouses(this)">
-      <label for="vehicle1"> Toggle affordable houses markers</label><br>
-
-      <div id="filter_mode">
-	      <button id="show_areas_button"; onclick="show_areas()">Areas.</button>
-	      <select id="dateSelect"></select>
-	      <select id="typeSelect"></select>
-      </div>
-      <div id="sdate_mode">
-	      <button id="show_sdates_button"; onclick="show_sdates()">Special Dates</button>
+	    <div id="filter_mode">
+		      <button id="show_areas_button"; onclick="show_areas()">Areas.</button>
+		      <select id="dateSelect"></select>
+		      <select id="typeSelect"></select>
+	    </div>
+	    <div id="sdate_mode">
+		      <button id="show_sdates_button"; onclick="show_sdates()">Special Dates</button>
 	      <select id="sdateSelect"></select>
-      </div>
-    </div>
-	    <div id="cyear"></div>
-    <div id="map">
-      <script src="javascript/icons.js"></script>
-      <script src="javascript/areas.js"></script>
-      <script src="javascript/leaflet-providers.js"></script>
-      <script src="javascript/leaflet-heat.js"></script>
-      <script src="javascript/maptest.js"></script>
-    </div>
+	    </div>
+	    <div id="aff_houses">
+		      <input type="checkbox" id="checkbox_house" default=1 onclick="displayHouses(this)">
+		      <label for="vehicle1"> Toggle affordable houses markers</label><br>
+	    </div>
+	  </div>
+	  <div id="map">
+	      <script src="javascript/icons.js"></script>
+	      <script src="javascript/areas.js"></script>
+	      <script src="javascript/leaflet-providers.js"></script>
+	      <script src="javascript/leaflet-heat.js"></script>
+	      <script src="javascript/maptest.js"></script>
+	  </div>
+	  <div id="cyear"></div>
   </div>
 
   <!-- Statistical section part 3 -->

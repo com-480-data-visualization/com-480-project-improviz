@@ -17,7 +17,7 @@ body {
   background-color: #282A2D;
   text-align: center;
   align-content: center;
-  height: 1000px;
+  height: 500px;
 }
 
 #part3{
@@ -123,3 +123,36 @@ body {
 	color: white;
 }
 
+.btn {
+  font-size:1.2em;
+  display:inline-block;
+  transition:all .5s;
+  border: none;
+}
+
+.btn-police:hover {
+  background:#880000;
+  color:#FFFFFF;
+}
+
+.btn-police {
+  background:#FF0000
+}
+
+.btn-filter:hover {
+  background:#008800;
+  color:#FFFFFF;
+}
+
+.btn-filter {
+  background:#00FF00
+}
+
+.btn-sdate:hover {
+  background:#000088;
+  color:#FFFFFF;
+}
+
+.btn-sdate {
+  background:#0000FF
+}

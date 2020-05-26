@@ -11,18 +11,30 @@ var current_sdatemap = null
 var year_sdatemap = 2001
 var interval_sdatemap
 // Selection menus
-var selectDate = document.getElementById("dateSelect")
-var selectType = document.getElementById("typeSelect")
-var selectSpecialDate = document.getElementById("sdateSelect")
+var selectDate = document.getElementById('dateSelect')
+var selectType = document.getElementById('typeSelect')
+var selectSpecialDate = document.getElementById('sdateSelect')
 
 var areas_to_id = {'PORTAGE PARK': 15, 'WEST ENGLEWOOD': 67, 'ENGLEWOOD': 68, 'WASHINGTON PARK': 40, 'HUMBOLDT PARK': 23, 'GRAND BOULEVARD': 38, 'UPTOWN': 3, 'SOUTH SHORE': 43, 'NORTH CENTER': 5, 'NEAR WEST SIDE': 28, 'ALBANY PARK': 14, 'WEST TOWN': 24, 'LOGAN SQUARE': 22, 'NEAR NORTH SIDE': 8, 'NORTH LAWNDALE': 29, 'PULLMAN': 50, 'AUBURN GRESHAM': 71, 'NEW CITY': 61, 'WEST LAWN': 65, 'LOWER WEST SIDE': 31, 'AUSTIN': 25, 'WEST RIDGE': 2, 'EAST GARFIELD PARK': 27, 'KENWOOD': 39, 'DOUGLAS': 35, 'WOODLAWN': 42, 'BELMONT CRAGIN': 19, 'OAKAND': 36, 'ROSELAND': 49, 'LAKEVIEW': 6, 'LOOP': 32, 'NORTH PARK': 13, 'SOUTH DEERING': 51, 'GARFIELD RIDGE': 56, 'BRIDGEPORT': 60, 'LINCOLN SQUARE': 4, 'SOUTH CHICAGO': 46, 'WEST GARFIELD PARK': 26, 'HYDE PARK': 41, 'NEAR SOUTH SIDE': 33, 'ROGERS PARK': 1, 'MONTCLARE': 18, 'WEST PULLMAN': 53, 'AVALON PARK': 45, 'CHICAGO LAWN': 66, 'EDGEWATER': 77, 'WASHINGTON HEIGHTS': 73, 'HEGEWISCH': 55, 'SOUTH LAWNDALE': 30, 'GAGE PARK': 63, 'CHATHAM': 44, 'WEST ELSDON': 62, 'AVONDALE': 21, 'FULLER PARK': 37, 'GREATER GRAND CROSSING': 69, 'ASHBURN': 70, 'IRVING PARK': 16, 'RIVERDALE': 54, 'NORWOOD PARK': 10, 'JEFFERSON PARK': 11, 'BRIGHTON PARK': 58, 'DUNNING': 17, 'LINCOLN PARK': 7, 'EDISON PARK': 9, 'FOREST GLEN': 12, 'HERMOSA': 20, 'ARMOUR SQUARE': 34, 'BURNSIDE': 47, 'CALUMET HEIGHTS': 48, 'EAST SIDE': 52, 'ARCHER HEIGHTS': 57, 'MCKINLEY PARK': 59, 'CLEARING': 64, 'BEVERLY': 72, 'MOUNT GREENWOOD': 74, 'MORGAN PARK': 75, 'OHARE': 76}
+
+function disableMapButtons () {
+  for (var b of document.getElementsByTagName('button')) {
+    b.disabled = true
+  }
+}
+
+function enableMapButtons () {
+  for (var b of document.getElementsByTagName('button')) {
+    b.disabled = false
+  }
+}
 
 function startLoadOverlay () {
   document.getElementById('load_overlay').style.display = 'block'
 }
 
-function stopLoadOverlay() {
-	document.getElementById("load_overlay").style.display = "none";
+function stopLoadOverlay () {
+  document.getElementById('load_overlay').style.display = 'none'
 }
 
 // set map view on Chicago
@@ -73,27 +85,29 @@ function display_heatmap (data) {
 
   display_one_heatmap(data)
 
-  if ((year_heatmap == 2006) && (month_heatmap==1)) {
-		console.log("change to 2006")
+  if ((year_heatmap == 2006) && (month_heatmap == 1)) {
+    console.log('change to 2006')
     clearInterval(interval_heatmap)
-		startLoadOverlay()
+    startLoadOverlay()
     animate_heatmaps('data/heatmap_2006_2010.json')
     return
-  } if ((year_heatmap == 2011)  && (month_heatmap==1)){
-		console.log("change to 2011")
+  } if ((year_heatmap == 2011) && (month_heatmap == 1)) {
+    console.log('change to 2011')
     clearInterval(interval_heatmap)
-		startLoadOverlay()
+    startLoadOverlay()
     animate_heatmaps('data/heatmap_2011_2015.json')
     return
-  } if ((year_heatmap == 2016)&& (month_heatmap==1)){
-		console.log("change to 2016")
+  } if ((year_heatmap == 2016) && (month_heatmap == 1)) {
+    console.log('change to 2016')
     clearInterval(interval_heatmap)
-		startLoadOverlay()
+    startLoadOverlay()
     animate_heatmaps('data/heatmap_2016_2020.json')
     return
   } else if (year_heatmap == 2020) {
     console.log('should stop')
-    year_heatmap = 2001;
+    year_heatmap = 2001
+		month_heatmap = 1
+		enableMapButtons()
     clearInterval(interval_heatmap)
     return
   }
@@ -105,12 +119,12 @@ function display_heatmap (data) {
 // }
 
 function animate_heatmaps (filepath) {
-	console.log("animate:")
-	console.log(filepath)
-	console.log("interval heatmap")
-	console.log(interval_heatmap)
+  console.log('animate:')
+  console.log(filepath)
+  console.log('interval heatmap')
+  console.log(interval_heatmap)
   d3.json(filepath, function (data) {
-		console.log("file loaded")
+    console.log('file loaded')
     stopLoadOverlay()
     interval_heatmap = setInterval(display_heatmap, 10, data)
   })
@@ -120,6 +134,7 @@ function animate_heatmaps (filepath) {
 function show_police_stations () {
   startLoadOverlay()
   clear_map()
+  disableMapButtons()
 
   var layers
   var layer_id = 0
@@ -142,36 +157,19 @@ function show_police_stations () {
 
 // -------------- END HEATMAPS POLICE STATIONS ---------------------
 
-// SHOW HEATMAP
-function show_heatmap () {
-  startLoadOverlay()
-  // we execute when the csv is open
-  d3.csv('data/heattest.csv')
-        .on('load', function (data) {
-          clear_map()
-
-          var t = []
-    // set the marker
-          data.forEach(function (row) {
-            t.push([row.Latitude, row.Longitude, 1])
-          })
-
-    // heatmap plot
-          current_layers.push(L.heatLayer(t, {radius: 25, gradient: {0.4: 'yellow', 0.65: 'orange', 1: 'purple'}}).addTo(mymap))
-	  stopLoadOverlay()
-        }).get()
-}
 
 // AREAS
 
 function show_areas () {
-  startLoadOverlay();
-  var d = document.getElementById("dateSelect");
-  var date = d.options[d.selectedIndex].value;
-  var t = document.getElementById("typeSelect");
-  var type = t.options[t.selectedIndex].value;
-  var year = date.split("/");
-  var filename = "data/crimes_by_type_year"+year[2]+".csv";
+  startLoadOverlay()
+	disableMapButtons()
+
+  var d = document.getElementById('dateSelect')
+  var date = d.options[d.selectedIndex].value
+  var t = document.getElementById('typeSelect')
+  var type = t.options[t.selectedIndex].value
+  var year = date.split('/')
+  var filename = 'data/crimes_by_type_year' + year[2] + '.csv'
   clear_map()
 
   // geojson for area
@@ -203,108 +201,112 @@ function show_areas () {
 
     current_layers.push(L.geoJSON(areas, {style: style}).addTo(mymap))
     stopLoadOverlay()
+		enableMapButtons()
   }).get()
 }
 
 // SPECIAL DATES
 
-function display_sdate(data, sdate) {
-  console.log(year_sdatemap);
+function display_sdate (data, sdate) {
+  console.log(year_sdatemap)
   console.log(sdate)
   if (year_sdatemap == 2020) {
-    year_sdatemap = 2001;
+    year_sdatemap = 2001
+		month_sdatemap = 1
     console.log('should stop')
     clearInterval(interval_sdatemap)
+		enableMapButtons()
   } else {
     if (current_sdatemap != null) {
       mymap.removeLayer(current_sdatemap)
     }
-    console.log("length")
+    console.log('length')
     console.log(data[year_sdatemap.toString()][sdate].length)
     current_sdatemap = L.heatLayer(data[year_sdatemap.toString()][sdate], {radius: 25, gradient: {0.2: 'blue', 0.35: 'yellow', 0.55: 'orange', 1: 'purple'}}).addTo(mymap)
     year_sdatemap++
-    }
   }
+}
 
-function animate_sdatemaps(data, sdate) {
+function animate_sdatemaps (data, sdate) {
   console.log('dataset sdates loaded')
   interval_sdatemap = setInterval(display_sdate, 1000, data, sdate)
 }
 
-function show_sdates() {
-  startLoadOverlay();
-  var sd = document.getElementById("sdateSelect");
-  var sdate = sd.options[sd.selectedIndex].value;
+function show_sdates () {
+  startLoadOverlay()
+	disableMapButtons()
+  var sd = document.getElementById('sdateSelect')
+  var sdate = sd.options[sd.selectedIndex].value
   clear_map()
 
   d3.json('data/sdates_json.json', function (data) {
-    stopLoadOverlay();
+    stopLoadOverlay()
     animate_sdatemaps(data, sdate)
   })
 }
 
-var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-var monthDaysBis = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+var monthDaysBis = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 for (var y = 2001; y <= 2019; y++) {
-	for (var m = 1; m <= 12; m++) {
-		if (y%4 == 0) {
-			for (d = 1; d <=monthDaysBis[m-1]; d++) {
-				if (d < 10) {
-					var day = "0"+d.toString(10);
-				} else {
-					var day = d.toString(10);
-				}
-				if (m < 10) {
-					var month = "0"+m.toString(10);
-				} else {
-					var month = m.toString(10);
-				}
-				var val = day+"/"+month+"/"+y.toString(10);
-				var option = document.createElement("option");
-				option.value = val;
-				option.text = val;
-				selectDate.appendChild(option);
-			}
-		} else {
-			for (d = 1; d <=monthDays[m-1]; d++) {
-				if (d < 10) {
-					var day = "0"+d.toString(10);
-				} else {
-					var day = d.toString(10);
-				}
-				if (m < 10) {
-					var month = "0"+m.toString(10);
-				} else {
-					var month = m.toString(10);
-				}
-				var val = day+"/"+month+"/"+y.toString(10);
-				var option = document.createElement("option");
-				option.value = val;
-				option.text = val;
-				selectDate.appendChild(option);
-			}
-		}
-	}
+  for (var m = 1; m <= 12; m++) {
+    if (y % 4 == 0) {
+      for (d = 1; d <= monthDaysBis[m - 1]; d++) {
+        if (d < 10) {
+          var day = '0' + d.toString(10)
+        } else {
+          var day = d.toString(10)
+        }
+        if (m < 10) {
+          var month = '0' + m.toString(10)
+        } else {
+          var month = m.toString(10)
+        }
+        var val = day + '/' + month + '/' + y.toString(10)
+        var option = document.createElement('option')
+        option.value = val
+        option.text = val
+        selectDate.appendChild(option)
+      }
+    } else {
+      for (d = 1; d <= monthDays[m - 1]; d++) {
+        if (d < 10) {
+          var day = '0' + d.toString(10)
+        } else {
+          var day = d.toString(10)
+        }
+        if (m < 10) {
+          var month = '0' + m.toString(10)
+        } else {
+          var month = m.toString(10)
+        }
+        var val = day + '/' + month + '/' + y.toString(10)
+        var option = document.createElement('option')
+        option.value = val
+        option.text = val
+        selectDate.appendChild(option)
+      }
+    }
+  }
 }
 
 d3.json('data/types_json.json', function (data) {
-    var t = data["types"];
-    for (i=0;i<t.length;i++) {
-	var option = document.createElement("option");
-	option.value = t[i];
-	option.text = t[i];
-	selectType.appendChild(option);
-    }
+  var t = data['types']
+  for (i = 0; i < t.length; i++) {
+    var option = document.createElement('option')
+    option.value = t[i]
+    option.text = t[i]
+    selectType.appendChild(option)
+  }
 })
 
-d3.json('data/sdates_json.json', function(data) {
-	Object.keys(data[2001]).forEach(function(key) {
-		var option = document.createElement("option");
-		option.value = key;
-		option.text = key;
-		selectSpecialDate.appendChild(option);
-	})
+d3.json('data/sdates_json.json', function (data) {
+  Object.keys(data[2001]).forEach(function (key) {
+    var option = document.createElement('option')
+    option.value = key
+    option.text = key
+    selectSpecialDate.appendChild(option)
+  })
 })
 
 create_map()

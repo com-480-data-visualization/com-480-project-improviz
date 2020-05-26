@@ -23,15 +23,14 @@
   <!-- LEAFLET TEST -->
   <div id="mapsection">
     <div id="mapbuttons">
-      <button onclick="show_police_stations()">Police stations.</button>
-      <button onclick="show_heatmap()">HeatMap.</button>
+      <button id="show_police_station_button"; onclick="show_police_stations()">Police stations.</button>
       <div id="filter_mode">
-	      <button onclick="show_areas()">Areas.</button>
+	      <button id="show_areas_button"; onclick="show_areas()">Areas.</button>
 	      <select id="dateSelect"></select>
 	      <select id="typeSelect"></select>
       </div>
       <div id="sdate_mode">
-	      <button onclick="show_sdates()">Special Dates</button>
+	      <button id="show_sdates_button"; onclick="show_sdates()">Special Dates</button>
 	      <select id="sdateSelect"></select>
       </div>
     </div>
@@ -41,7 +40,6 @@
       <script src="javascript/leaflet-providers.js"></script>
       <script src="javascript/leaflet-heat.js"></script>
       <script src="javascript/maptest.js"></script>
-      <script src="zip.js"></script>
     </div>
 
   </div>

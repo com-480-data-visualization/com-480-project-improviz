@@ -216,7 +216,7 @@ for (var y = 2001; y <= 2019; y++) {
 
 d3.json('data/types_json.json', function (data) {
     var t = data["types"];
-    for (i=1;i<t.length;i++) {
+    for (i=0;i<t.length;i++) {
 	var option = document.createElement("option");
 	option.value = t[i];
 	option.text = t[i];

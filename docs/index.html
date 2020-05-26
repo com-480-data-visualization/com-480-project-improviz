@@ -25,9 +25,15 @@
     <div id="mapbuttons">
       <button onclick="show_police_stations()">Police stations.</button>
       <button onclick="show_heatmap()">HeatMap.</button>
-      <button onclick="show_areas()">Areas.</button>
-      <select id="dateSelect"></select>
-      <select id="typeSelect"></select>
+      <div id="filter_mode">
+	      <button onclick="show_areas()">Areas.</button>
+	      <select id="dateSelect"></select>
+	      <select id="typeSelect"></select>
+      </div>
+      <div id="sdate_mode">
+	      <button onclick="show_sdates()">Special Dates</button>
+	      <select id="sdateSelect"></select>
+      </div>
     </div>
     <div id="map">
       <script src="javascript/icons.js"></script>

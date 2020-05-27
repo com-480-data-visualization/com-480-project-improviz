@@ -11,17 +11,18 @@ body {
   text-align: center;
 }
 #part2{
-  margin-top: 50px:
-  margin-bottom: 50px;
+  margin-top: 50px;
+  margin-bottom: 50;
   padding-bottom: 30px;
   background-color: #282A2D;
   text-align: center;
   align-content: center;
+  height: 500px;
 }
 
 #part3{
-  margin-top: 0px:
-  margin-bottom: 2px;
+  margin-top: 0px;
+  margin-bottom: 50px;
   padding-top: 0px;
   background-color: #f4f4f4;
   text-align: center;
@@ -30,7 +31,7 @@ body {
 
 #part4{
   padding-top: 50px;
-  margin-top: 50px:
+  margin-top: 50px;
   margin-bottom: 50px;
   background-color: #f4f4f4;
   text-align: center;
@@ -38,19 +39,51 @@ body {
 }
 
 #map{
-  height: 500px;
-  width: 50%;
+  height: 100%;
+  width: 80%;
   float: left;
+  position: relative;
 }
 
 #mapbuttons{
-  width: 50%;
+  height: 100%;
+  width: 20%;
   float: right;
+  position: relative;
 }
 
-#mapbuttons{
-  width: 50%;
-  float: right;
+#police{
+  background-color: #232931;
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#filter_mode{
+  background-color: #393e46;
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#sdate_mode{
+  background-color: #232931;
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#aff_houses{
+  background-color: #393e46;
+  height: 25%;
+  position: relative;
+  align-content: center;
+}
+
+#centering{
+	top: 50%;
+	position: absolute;
+  align-content: center;
 }
 
 #streamgraph {

@@ -73,42 +73,40 @@ This gives a nice overall idea of what can be expected when using the filter mod
   <div id="part2">
     <div id="mapbuttons">
       <div id="police">
-        <div class="title-police">
-          Do the police stations locations affect crime density ?
+        <div class="title-map">
+		Do the police stations locations affect crime density ?
         </div>
-        <div class="centered1">
-          <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
-        </div>
-      </div>
+          <div class="centered1">
+           <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
+          </div>
+	</div>
 
-      <div id="filter_mode">
-        <div class="title-filter">
-          Display the number of a crime type for a chosen date
-        </div>
-        <div class="filter_button">
-          <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Filter</button>
-        </div>
-        <div class="filter_options">
-          <datalist id="dateSelect"></datalist>
-          <input type="date" list="dataSelect" title="date-selector" id="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
-          <select id="typeSelect"></select>
-        </div>
-      </div>
-      <div id="sdate_mode">
-        <div class="title-sdate">
-          Show the evolution of crime density on holidays
-        </div>
-        <div class="sdate_button">
-          <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
-        </div>
-
+	    <div id="filter_mode">
+	      <div class="title-map">
+		      Display the number of a crime type for a chosen date
+	      </div>
+	      <div class="filter_button">
+	        <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Filter</button>
+	      </div>
+		    <div class="filter_options">
+		      <datalist id="dateSelect"></datalist>
+		      <input type="date" list="dataSelect" title="date-selector" class="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
+		      <select id="typeSelect" class="selector"></select>
+		    </div>
+	    </div>
+	    <div id="sdate_mode">
+	      <div class="title-map">
+		      Show the evolution of crime density on holidays
+	      </div>
         <div class="sdate_options">
-          <select id="sdateSelect"></select>
+          <select id="sdateSelect" class="selector"></select>
         </div>
-
-      </div>
-      <div id="aff_houses">
-        <!-- <div class="aff_h">
+	      <div class="sdate_button">
+	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
+	      </div>
+	    </div>
+	    <div id="aff_houses">
+	      <!-- <div class="aff_h">
 		      <input type="checkbox" id="checkbox_house" value="2" onclick="displayHouses(this)">
 		        Toggle affordable houses marker<br>
 	      </div> -->

@@ -89,7 +89,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
       if (d.Day < 10){
         pad_day = "0"
       }
-      return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
+      return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
     .on("mouseout", function(d) {
       //e.attr("log", 0);
@@ -136,7 +136,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
       if (d.Day < 10){
         pad_day = "0"
       }
-      textNbCrimes.text(parseInt(d.Crimes)), textElements.text("average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
+      textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
     .transition()
     .duration(5000)

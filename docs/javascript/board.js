@@ -359,11 +359,11 @@ svg_board_select
     })
     d3.select(this).attr('fill', "#C57063")
     console.log(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)])
-    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)])
-    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)])
-    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)])
-    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)])
-    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)])
+    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
   })
 
 svg_board_select

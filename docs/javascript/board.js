@@ -35,7 +35,7 @@ var margin = {
     left: -10
   },
   width_board = window.innerWidth - margin.left - margin.right - 20,
-  height_board = 260 - margin.top - margin.bottom;
+  height_board = window.innerHeight * 0.27 - margin.top - margin.bottom;
 
 // append the svg_board object to the body of the page
 var svg_board = d3.select("#the_board_bar")
@@ -186,8 +186,8 @@ var textBottomCat5;
 //==========================================================================
 
 
-var width = 500
-var height = 500
+var width = window.innerHeight * 0.54
+var height = window.innerHeight * 0.54
 var margin = 5
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -466,7 +466,7 @@ var margin_board_bar_down_left = {
     left: -10
   },
   width_board_bar_down_left = window.innerWidth / 1.3 - margin_board_bar_down_left.left - margin_board_bar_down_left.right,
-  height_board_bar_down_left = 160 - margin_board_bar_down_left.top - margin_board_bar_down_left.bottom;
+  height_board_bar_down_left = window.innerHeight * 0.17 - margin_board_bar_down_left.top - margin_board_bar_down_left.bottom;
 
 // append the svg_board object to the body of the page
 var svg_board_bar_down_left = d3.select("#the_board_bar_down_left")

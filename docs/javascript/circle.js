@@ -64,7 +64,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .attr("fill", "#14161A")
     .on("mouseover", function(d) {
       d3.selectAll("path").transition().duration(0);
-      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement").duration(500);
+      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date +suffix+ " day of the year from 2001 to now"), d3.selectAll("*").transition("movement").duration(500);
     })
     .on("mouseout", function(d) {
 	    //e.attr("log", 0);
@@ -101,7 +101,15 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     })
     .attr("fill", "#444B5B")
     .on('start', function(d) {
-      textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now");
+      var suffix = 'th';
+      if (d.Date < 2) {
+	suffix = 'st';
+      } else if (d.Date < 3) {
+	suffix = 'nd';
+      } else if (d.Date < 4) {
+	suffix = 'rd';
+      }
+      textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date +suffix+ " day of the year from 2001 to now");
     })
     .transition()
     .duration(5000)

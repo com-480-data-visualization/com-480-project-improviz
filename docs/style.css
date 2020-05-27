@@ -19,13 +19,13 @@ body {
   text-align: center;
 }
 #part2{
-  margin-top: 50px;
+  /* margin-top: 50px;
   margin-bottom: 50;
-  padding-bottom: 30px;
+  padding-bottom: 30px; */
   background-color: #282A2D;
   text-align: center;
   align-content: center;
-  height: 500px;
+  height: 100vh;
 }
 
 #part3{

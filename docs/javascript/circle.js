@@ -33,9 +33,17 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .attr("x", 0)
     .attr("y", 0)
     .attr("dy", "1.5em")
-    .attr("font-size", "15px")
+    .attr("font-size", "14px")
     .style("text-anchor", "middle")
     .text("Crimes one day of the year from 2001 to now");
+
+  svg.append("text")
+    .attr("x", 0)
+    .attr("y", 25)
+    .attr("dy", "1.5em")
+    .attr("font-size", "14px")
+    .style("text-anchor", "middle")
+    .text("2001 to 2019");
 
   // X scale
   var x = d3.scaleBand()
@@ -76,7 +84,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       } else if (d.Date < 4) {
         suffix = 'rd';
       }
-      return textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
+      return textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years");
     })
     .on("mouseout", function(d) {
       //e.attr("log", 0);
@@ -123,7 +131,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       } else if (d.Date < 4) {
         suffix = 'rd';
       }
-      textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
+      textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years");
     })
     .transition()
     .duration(5000)

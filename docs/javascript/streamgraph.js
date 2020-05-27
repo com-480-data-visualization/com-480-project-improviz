@@ -79,7 +79,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     d3.select(this)
       .style("stroke", "white")
       .style("opacity", 1)
-      .style('fill', '#C57063')
+      .style('fill', '#69779B')
   }
   var mousemove = function(d, i) {
     grp = keys[i]
@@ -87,7 +87,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   }
   var mouseleave = function(d) {
     Tooltip.style("opacity", 0)
-    d3.selectAll(".area_streamgraph").style("opacity", 1).style("stroke", "none").style("fill", function(d) {
+    d3.selectAll(".area_streamgraph").style("opacity", .5).style("stroke", "none").style("fill", function(d) {
       return color_streamgraph(d.key);
     })
   }
@@ -113,6 +113,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     .style("fill", function(d) {
       return color_streamgraph(d.key);
     })
+    .style("opacity", .5)
     .attr("d", area)
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)

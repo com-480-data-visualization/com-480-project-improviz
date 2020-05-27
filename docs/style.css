@@ -1,3 +1,11 @@
+
+ /* @almost-white: #e2ded3;
+ @almost-black: #232931;
+ @grey: #726867;
+ @orange: #d4613c;
+ @light-black: #393e46; */
+
+
 body {
   margin: 0px;
   background-color: #282A2D;
@@ -121,4 +129,69 @@ body {
 #cyear {
 	display: none;
 	color: white;
+}
+
+.btn {
+  font-size:1.2em;
+  display:inline-block;
+  transition:all .5s;
+  border: none;
+  padding: .8em 1em;
+  background:#69779b;
+}
+
+.btn:hover {
+  background:#454f68;
+}
+
+.btn:focus {
+  background:#1f232e;
+}
+
+.centered1 {
+  left: 50%;
+  padding-top: 13%;
+}
+
+.filter_button{
+  padding-top: 13%;
+  float: left;
+  width: 50%;
+}
+
+.filter_options{
+  padding-top: 13%;
+  float: right;
+  width: 50%;
+}
+
+.sdate_button{
+  padding-top: 13%;
+  float: left;
+  width: 50%;
+}
+
+.sdate_options{
+  padding-top: 13%;
+  float: right;
+  width: 50%;
+}
+
+.aff_h{
+  padding-top: 13%;
+}
+
+select {
+  font-size: 16px;
+  border: 1px;
+  height: 34px;
+  width: 7em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /*background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee;*/
+}
+
+select:hover {
+  background: rgb(50,50,50);
 }

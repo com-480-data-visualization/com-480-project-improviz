@@ -31,7 +31,6 @@ var houses_layers = []
 var areas_to_id = {'PORTAGE PARK': 15, 'WEST ENGLEWOOD': 67, 'ENGLEWOOD': 68, 'WASHINGTON PARK': 40, 'HUMBOLDT PARK': 23, 'GRAND BOULEVARD': 38, 'UPTOWN': 3, 'SOUTH SHORE': 43, 'NORTH CENTER': 5, 'NEAR WEST SIDE': 28, 'ALBANY PARK': 14, 'WEST TOWN': 24, 'LOGAN SQUARE': 22, 'NEAR NORTH SIDE': 8, 'NORTH LAWNDALE': 29, 'PULLMAN': 50, 'AUBURN GRESHAM': 71, 'NEW CITY': 61, 'WEST LAWN': 65, 'LOWER WEST SIDE': 31, 'AUSTIN': 25, 'WEST RIDGE': 2, 'EAST GARFIELD PARK': 27, 'KENWOOD': 39, 'DOUGLAS': 35, 'WOODLAWN': 42, 'BELMONT CRAGIN': 19, 'OAKAND': 36, 'ROSELAND': 49, 'LAKEVIEW': 6, 'LOOP': 32, 'NORTH PARK': 13, 'SOUTH DEERING': 51, 'GARFIELD RIDGE': 56, 'BRIDGEPORT': 60, 'LINCOLN SQUARE': 4, 'SOUTH CHICAGO': 46, 'WEST GARFIELD PARK': 26, 'HYDE PARK': 41, 'NEAR SOUTH SIDE': 33, 'ROGERS PARK': 1, 'MONTCLARE': 18, 'WEST PULLMAN': 53, 'AVALON PARK': 45, 'CHICAGO LAWN': 66, 'EDGEWATER': 77, 'WASHINGTON HEIGHTS': 73, 'HEGEWISCH': 55, 'SOUTH LAWNDALE': 30, 'GAGE PARK': 63, 'CHATHAM': 44, 'WEST ELSDON': 62, 'AVONDALE': 21, 'FULLER PARK': 37, 'GREATER GRAND CROSSING': 69, 'ASHBURN': 70, 'IRVING PARK': 16, 'RIVERDALE': 54, 'NORWOOD PARK': 10, 'JEFFERSON PARK': 11, 'BRIGHTON PARK': 58, 'DUNNING': 17, 'LINCOLN PARK': 7, 'EDISON PARK': 9, 'FOREST GLEN': 12, 'HERMOSA': 20, 'ARMOUR SQUARE': 34, 'BURNSIDE': 47, 'CALUMET HEIGHTS': 48, 'EAST SIDE': 52, 'ARCHER HEIGHTS': 57, 'MCKINLEY PARK': 59, 'CLEARING': 64, 'BEVERLY': 72, 'MOUNT GREENWOOD': 74, 'MORGAN PARK': 75, 'OHARE': 76}
 
 function disableMapButtons () {
-  console.log(document.getElementsByTagName('button'))
   for (var b of document.getElementsByTagName('button')) {
     b.disabled = true
   }
@@ -94,31 +93,24 @@ function display_one_heatmap (data) {
 }
 
 function display_heatmap (data) {
-  console.log(year_heatmap)
-  console.log(month_heatmap)
-
   display_one_heatmap(data)
 
   if ((year_heatmap == 2006) && (month_heatmap == 1)) {
-    console.log('change to 2006')
     clearInterval(interval_heatmap)
     startLoadOverlay()
     animate_heatmaps('data/heatmap_2006_2010.json')
     return
   } if ((year_heatmap == 2011) && (month_heatmap == 1)) {
-    console.log('change to 2011')
     clearInterval(interval_heatmap)
     startLoadOverlay()
     animate_heatmaps('data/heatmap_2011_2015.json')
     return
   } if ((year_heatmap == 2016) && (month_heatmap == 1)) {
-    console.log('change to 2016')
     clearInterval(interval_heatmap)
     startLoadOverlay()
     animate_heatmaps('data/heatmap_2016_2020.json')
     return
   } else if (year_heatmap == 2020) {
-    console.log('should stop')
     year_heatmap = 2001
     month_heatmap = 1
     enableMapButtons()
@@ -128,18 +120,8 @@ function display_heatmap (data) {
   }
 }
 
-// function animate_heatmaps (data) {
-//   console.log('dataset heatmaps loaded')
-//   interval_heatmap = setInterval(display_heatmap, 10, data)
-// }
-
 function animate_heatmaps (filepath) {
-  console.log('animate:')
-  console.log(filepath)
-  console.log('interval heatmap')
-  console.log(interval_heatmap)
   d3.json(filepath, function (data) {
-    console.log('file loaded')
     stopLoadOverlay()
     interval_heatmap = setInterval(display_heatmap, 10, data)
   })
@@ -198,7 +180,6 @@ function show_police_stations () {
     })
   })
 
-  console.log('police ok')
   animate_heatmaps('data/heatmap_2001_2005.json')
 }
 
@@ -211,6 +192,9 @@ function show_areas () {
   disableMapButtons()
 
   var d = document.getElementById('date-selector')
+  if (d.value.length == 0) {
+    d.value = '2001-01-01';
+  }
   var sel_date = d.value.split('-')
   if ((parseInt(sel_date[0]) < 2001) || (parseInt(sel_date[0]) > 2019)) {
     alert('Select valid date between 2001 and 2019')
@@ -265,29 +249,21 @@ function show_areas () {
 // SPECIAL DATES
 
 function display_sdate (data, sdate) {
-  console.log(year_sdatemap)
-  console.log(sdate)
-  // currentYear.innerHTML = year_sdatemap.toString();
-  // currentYear.style.display = 'block'
   if (year_sdatemap == 2020) {
     year_sdatemap = 2001
     month_sdatemap = 1
-    console.log('should stop')
     clearInterval(interval_sdatemap)
     enableMapButtons()
   } else {
     if (current_sdatemap != null) {
       mymap.removeLayer(current_sdatemap)
     }
-    console.log('length')
-    console.log(data[year_sdatemap.toString()][sdate].length)
     current_sdatemap = L.heatLayer(data[year_sdatemap.toString()][sdate], {radius: 25, gradient: {0.2: 'blue', 0.35: 'yellow', 0.55: 'orange', 1: 'purple'}}).addTo(mymap)
     year_sdatemap++
   }
 }
 
 function animate_sdatemaps (data, sdate) {
-  console.log('dataset sdates loaded')
   interval_sdatemap = setInterval(display_sdate, 1000, data, sdate)
 }
 

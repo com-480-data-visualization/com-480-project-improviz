@@ -78,7 +78,6 @@ function update(data, value_nb) {
   x.domain(data.map(function(d) {
     return d.group;
   }))
-  //xAxis.call(d3.axisBottom(x))
 
   // Update the Y axis
   y.domain([0, d3.max(data, function(d) {
@@ -86,15 +85,10 @@ function update(data, value_nb) {
       textBoardBar.text(savedDataCateg.group + " " + savedDataCateg[value_nb])
     }
 
-    //console.log(Math.max(d[2002 + "-" + place_column], d[2006 + "-" + place_column]))
-    //console.log(d3.max(d[2004 + "-" + place_column]))
     return Math.max(parseInt(d[2002 + "-" + place_column]), parseInt(d[2003 + "-" + place_column]), parseInt(d[2004 + "-" + place_column]), parseInt(d[2005 + "-" + place_column]), parseInt(d[2006 + "-" + place_column]), parseInt(d[2007 + "-" + place_column]), parseInt(d[2008 + "-" + place_column]), parseInt(d[2009 + "-" + place_column]))
   })]);
   yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
-  //textBoardBar.text(function(d) {
-  //return d.group + " " + d[value_nb];
-  //})
   // Create the u variable
   var u_stream = svg_board.selectAll("rect")
     .data(data)
@@ -122,7 +116,6 @@ function update(data, value_nb) {
     .attr("width", x.bandwidth())
     .attr("height", function(d) {
       d3.select(savedThisCateg).attr('fill', "#69779B")
-      //return y(d[2005 + "-" + place_column]);
       return y(d[value_nb]);
     })
     .attr("fill", "#282A2D")
@@ -142,7 +135,6 @@ d3.csv("data/Crimes_board.csv", function(error, datapt) {
   if (error) {
     console.log(error); //Log the error.
   } else {
-    //console.log(datapt); //Log the data.
     dataset_board = datapt; // Give the data a global scope
     //Call some other functions that generate the visualization
   }
@@ -154,7 +146,6 @@ d3.csv("data/Socio_board_left.csv", function(error, datapt) {
   if (error) {
     console.log(error); //Log the error.
   } else {
-    //console.log(datapt); //Log the data.
     dataset_board_down_left = datapt; // Give the data a global scope
     //Call some other functions that generate the visualization
   }
@@ -166,7 +157,6 @@ d3.csv("data/district_name.csv", function(error, datapt) {
   if (error) {
     console.log(error); //Log the error.
   } else {
-    //console.log(datapt); //Log the data.
     dataset_district_name = datapt; // Give the data a global scope
     //Call some other functions that generate the visualization
   }
@@ -177,9 +167,6 @@ var textBottomCat2;
 var textBottomCat3;
 var textBottomCat4;
 var textBottomCat5;
-// Initialize the plot with the first dataset
-//update(dataset_board, "2007-19.0")
-//update(data1, "value")
 
 //==========================================================================
 //                    Select data
@@ -322,12 +309,10 @@ var data_place = {
 // set the color scale
 var color_dark = d3.scaleOrdinal()
   .domain(data)
-  //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
   .range(["#292E37", '#21242C', '#14161A', '#21242C'])
 
 var color_light = d3.scaleOrdinal()
   .domain(data)
-  //.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
   .range(["#DBDBDB", '#CFCFCF', '#C7C7C7', '#CFCFCF'])
 
 // Compute the position of each group on the pie:
@@ -506,10 +491,6 @@ function update_down_left(data, value_nb) {
   })]);
   yAxis_board_bar_down_left.transition().duration(1000).call(d3.axisLeft(y_board_bar_down_left));
 
-  //textBoardBar.text(function(d) {
-  //return d.group + " " + d[value_nb];
-  //})
-  // Create the u variable
   var u_stream_bar_down_left = svg_board_bar_down_left.selectAll("rect")
     .data(data)
     .attr("class", "board_bar_down_left")
@@ -534,11 +515,6 @@ function update_down_left(data, value_nb) {
     })
     .attr("width", x_board_bar_down_left.bandwidth())
     .attr("height", function(d) {
-      //return y(d[2005 + "-" + place_column]);
-      //return 70;
-      //console.log(d)
-      //return 10;
-      //console.log(y_board_bar_down_left(d[value_nb]))
       return height_board_bar_down_left - y_board_bar_down_left(d[value_nb]);
     })
     .attr("fill", "#282A2D")
@@ -598,6 +574,4 @@ function update_down_left(data, value_nb) {
   u_stream_bar_down_left
     .exit()
     .remove()
-
-
 }

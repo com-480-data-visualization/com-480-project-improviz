@@ -74,7 +74,6 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .append("path")
     .attr("fill", "#21252b")
     .on("mouseover", function(d) {
-      //d3.selectAll("path").transition().duration(0);
       d3.selectAll("*").transition("movement")
       d3.selectAll("#BarCercle").attr("fill", "#21252b");
       d3.selectAll("#BarCercle2").attr("fill", "#21252b");
@@ -92,23 +91,9 @@ d3.csv("data/crimes_mean.csv", function(data) {
       return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
     .on("mouseout", function(d) {
-      //e.attr("log", 0);
-      /*
-      d3.transition().duration(500)
-        .delay(function(d) {
-          return x(d.Date) * 20000;
-        })
-        //.attr("fill", "#444B5B")
-        .transition()
-        .duration(5000)
-        .delay(function(d) {
-          return 2000;
-        })*/
-      //.attr("fill", "#21252b")
     })
     .attr("id", "BarCercle")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
-      //.attr("id", "BarCercle")
       .innerRadius(innerRadius)
       .outerRadius(function(d) {
         return y((d['Crimes']-500)**exp);
@@ -152,24 +137,6 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .enter()
     .append("path")
     .attr("fill", "#21252b")
-    /*    .on("mouseover", function(d) {
-          d3.selectAll("path").transition().duration(0);
-          return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement2").duration(500);;
-        })*/
-    /*    .on("mouseout", function(d) {
-    	    //e.attr("log", 0);
-    	    d3.transition().duration(500)
-        .delay(function(d) {
-          return x(d.Date) * 20000;
-        })
-        .attr("fill", "#444B5B")
-        .transition()
-        .duration(5000)
-        .delay(function(d) {
-          return 2000;
-        })
-        .attr("fill", "#21252b")
-        })*/
     .attr("id", "BarCercle2")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
       .innerRadius(function(d) {
@@ -198,5 +165,4 @@ d3.csv("data/crimes_mean.csv", function(data) {
       return 2000;
     })
     .attr("fill", "#21252b")
-
 });

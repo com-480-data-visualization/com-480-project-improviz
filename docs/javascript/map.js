@@ -51,15 +51,6 @@ function stopLoadOverlay () {
 }
 
 // set map view on Chicago
-
-function sleep (milliseconds) {
-  const date = Date.now()
-  let currentDate = null
-  do {
-    currentDate = Date.now()
-  } while (currentDate - date < milliseconds)
-}
-
 function create_map () {
   mymap = L.map('map',{maxBounds: bounds}).setView([41.8119, -87.6873], 9)
   // dark theme

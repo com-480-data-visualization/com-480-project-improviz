@@ -53,6 +53,16 @@ body {
   padding-bottom: 1vh;
 }
 
+.conclusion{
+  padding-bottom: 100px;
+}
+
+.footer {
+  font-size: 10px;
+  font-style: italic;
+  padding-bottom: 20px;
+}
+
 
 #circle_text{
   padding-top: 20px;

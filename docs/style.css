@@ -139,6 +139,7 @@ body {
   border: none;
   padding: .8em 1em;
   background:#69779b;
+  box-shadow: 2px 2px #BBBBBB;
 }
 
 .btn:hover {
@@ -151,31 +152,47 @@ body {
 
 .centered1 {
   left: 50%;
-  padding-top: 13%;
+  padding-top: 3%;
+}
+
+.title-police {
+  padding-top: 0%;
+  color: #BBBBBB;
 }
 
 .filter_button{
-  padding-top: 13%;
-  float: left;
+  padding-top: 3%;
+  float: right;
   width: 50%;
 }
 
 .filter_options{
-  padding-top: 13%;
-  float: right;
-  width: 50%;
-}
-
-.sdate_button{
-  padding-top: 13%;
+  padding-top: 3%;
   float: left;
   width: 50%;
 }
 
-.sdate_options{
-  padding-top: 13%;
+.title-filter {
+  padding-top: 0%;
+  color: #BBBBBB;
+}
+
+.sdate_button{
+  padding-top: 3%;
   float: right;
   width: 50%;
+}
+
+.sdate_options{
+  padding-top: 3%;
+  float: left;
+  width: 50%;
+}
+
+
+.title-sdate {
+  padding-top: 0%;
+  color: #BBBBBB;
 }
 
 /* .aff_h{

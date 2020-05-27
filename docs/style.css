@@ -1,3 +1,11 @@
+
+ /* @almost-white: #e2ded3;
+ @almost-black: #232931;
+ @grey: #726867;
+ @orange: #d4613c;
+ @light-black: #393e46; */
+
+
 body {
   margin: 0px;
   background-color: #282A2D;
@@ -108,14 +116,15 @@ body {
 	right: 0;
 	bottom: 0;
 	background-color: rgba(0,0,0,0.5);
-	z-index: 2;
+	z-index: 1000;
 	cursor: pointer;
 }
 
 #lgif {
-	position: absolute;
+	position: relative;
 	top: 50%;
-	left: 50%;
+	left: 45%;
+  padding-top: -90px;
 }
 
 #cyear {

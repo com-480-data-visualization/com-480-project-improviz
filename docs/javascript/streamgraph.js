@@ -118,9 +118,4 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-
-
-  console.log(d3.select("#tickStream"));
-
-
 })

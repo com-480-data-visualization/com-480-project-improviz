@@ -195,3 +195,20 @@ select {
 select:hover {
   background: rgb(50,50,50);
 }
+
+.leaflet-popup-content-wrapper {
+  background: rgb(200,100,50,0.9) !important;
+  border-radius: 5px 15px 5px 15px !important;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+  /*background: rgb(255,0,0);*/
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 1.5em;
+  color: #000000;
+}
+
+.leaflet-popup-tip {
+  background: rgb(0,0,255) !important;
+  display: none;
+}

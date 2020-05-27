@@ -203,8 +203,15 @@ function show_areas () {
   startLoadOverlay()
   disableMapButtons()
 
-  var d = document.getElementById('dateSelect')
-  var date = d.options[d.selectedIndex].value
+  var d = document.getElementById('date-selector')
+  var sel_date = d.value.split('-')
+  if ((parseInt(sel_date[0]) < 2001) || (parseInt(sel_date[0]) > 2019)) {
+    alert("Select valid date between 2001 and 2019");
+    enableMapButtons()
+    stopLoadOverlay()
+    return;
+  }
+  var date = sel_date[2]+'/'+sel_date[1]+'/'+sel_date[0]
   var t = document.getElementById('typeSelect')
   var type = t.options[t.selectedIndex].value
   var year = date.split('/')

@@ -16,6 +16,9 @@ var selectType = document.getElementById('typeSelect')
 var selectSpecialDate = document.getElementById('sdateSelect')
 var currentYear = document.getElementById('cyear')
 
+//bounds
+var bounds = new L.LatLngBounds(new L.LatLng(42.268308, -88.539492), new L.LatLng(41.453662, -86.903606))
+
 
 //uncheck checkbox
 document.getElementById('checkbox_house').checked = false
@@ -59,7 +62,7 @@ function sleep (milliseconds) {
 }
 
 function create_map () {
-  mymap = L.map('map').setView([41.8119, -87.6873], 9)
+  mymap = L.map('map',{maxBounds: bounds}).setView([41.8119, -87.6873], 9)
   // dark theme
   var theme = L.tileLayer('https://tile.jawg.io/jawg-dark/{z}/{x}/{y}.png?access-token=2NizdI0VAUG9D62DlxhMK39Bs6ls6oqXlsL90NH46qvp5MFKPNEJXxpym8uTO7Dr', {
     attribution: '<a href="https://www.jawg.io" target="_blank">&copy; Jawg</a> | <a href="https://www.openstreetmap.org" target="_blank">&copy; OpenStreetMap</a>&nbsp;contributors',

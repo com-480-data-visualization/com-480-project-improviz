@@ -1,6 +1,6 @@
 
  /* @almost-white: #e2ded3;
- @almost-black: #232931;
+ @almost-black: #303236;
  @grey: #726867;
  @orange: #d4613c;
  @light-black: #393e46; */
@@ -12,10 +12,36 @@ body {
   font-family: Bitstream Vera Sans Mono;
 }
 
+#proj_title{
+  padding-top: 10px;
+  text-align: center;
+  background: #F4F4F4;
+  font-size: 30px;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  color: #454F68;
+}
+
+#proj_title_team{
+  text-align: center;
+  font-size: 40px;
+  color: #FAFAFA;
+  background-color: #282a2d;
+
+}
+
+#intro{
+  padding-top: 20px;
+  color: #454F68;
+  background: #F4F4F4;
+  text-align: center;
+  font-size: 15px;
+}
+
 #part0{
   background-image: url('img/chicago.jpg');
   background-size: cover;
-  height: 100vh;
+  height: 110vh;
   background-color: #282A2D;
 }
 
@@ -69,7 +95,7 @@ body {
 
 #police{
   /* padding-top: 50px; */
-  background-color: #232931;
+  background-color: #303236;
   height: 25%;
   position: relative;
   align-content: center;
@@ -83,7 +109,7 @@ body {
 }
 
 #sdate_mode{
-  background-color: #232931;
+  background-color: #303236;
   height: 25%;
   position: relative;
   align-content: center;

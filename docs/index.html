@@ -49,23 +49,32 @@
 	  <div id="mapbuttons">
 	    <div id="police">
         <div class="centered1">
-          lol
+         <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Police stations</button>
       </div>
 	    </div>
 
 	    <div id="filter_mode">
-         <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Police stations</button>
+		    <div class="filter_button">
 		      <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Areas.</button>
+		    </div>
+		    <div class="filter_options">
 		      <select id="dateSelect"></select>
 		      <select id="typeSelect"></select>
+		    </div>
 	    </div>
 	    <div id="sdate_mode">
-		      <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Special Dates</button>
-	      <select id="sdateSelect"></select>
+	      <div class="sdate_button">
+	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Special Dates</button>
+	      </div>
+	      <div class="sdate_options">
+	        <select id="sdateSelect"></select>
+	      </div>
 	    </div>
 	    <div id="aff_houses">
+	      <div class="aff_h">
 		      <input type="checkbox" id="checkbox_house" value="2" onclick="displayHouses(this)">
 		       Toggle affordable houses marker<br>
+	      </div>
 	    </div>
 	  </div>
 	  <div id="map">

@@ -142,6 +142,33 @@ body {
 
 .centered1 {
   left: 50%;
-  top: 50%;
-  padding-top: 4em;
+  padding-top: 13%;
+}
+
+.filter_button{
+  padding-top: 13%;
+  float: left;
+  width: 50%;
+}
+
+.filter_options{
+  padding-top: 13%;
+  float: right;
+  width: 50%;
+}
+
+.sdate_button{
+  padding-top: 13%;
+  float: left;
+  width: 50%;
+}
+
+.sdate_options{
+  padding-top: 13%;
+  float: right;
+  width: 50%;
+}
+
+.aff_h{
+  padding-top: 13%;
 }

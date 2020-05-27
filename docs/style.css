@@ -12,6 +12,13 @@ body {
   font-family: Bitstream Vera Sans Mono;
 }
 
+#part0{
+  background-image: url('img/chicago.jpg');
+  background-size: cover;
+  height: 160vh;
+  background-color: #282A2D;
+}
+
 #part1{
   padding-top: 70px;
   background-color: #282A2D;

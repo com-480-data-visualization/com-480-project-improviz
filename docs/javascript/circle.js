@@ -2,7 +2,7 @@
 var margin = {
     top: 50,
     right: 50,
-    bottom: 50,
+    bottom: 100,
     left: 50
   },
   width = 600,
@@ -21,7 +21,7 @@ var svg = d3.select("#my_dataviz")
 d3.csv("data/crimes_mean.csv", function(data) {
 
   var max_y = 1100;
-  var exp = 1.15;
+  var exp = 1.1;
 
   var textNbCrimes = svg.append("text")
     .attr("x", 0)

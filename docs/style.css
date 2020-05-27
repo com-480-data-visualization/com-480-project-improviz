@@ -172,3 +172,18 @@ body {
 .aff_h{
   padding-top: 13%;
 }
+
+select {
+  font-size: 16px;
+  border: 1px;
+  height: 34px;
+  width: 7em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /*background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee;*/
+}
+
+select:hover {
+  background: rgb(50,50,50);
+}

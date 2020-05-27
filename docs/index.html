@@ -20,13 +20,15 @@
   </div>
 
   <div id="proj_title">
-    <div id="proj_title_team"Improviz:> Improviz</div> </br>
+    <div id="proj_title_team"> Improviz</div> <br>
     Exploring the Crimes in Chicago from 2001 to 2019
   </div>
-  <div id="intro">
-    Some intro
+  <div id="intro" class="text_grey">
+  Chicago is the third most populated city in the United States with almost 3 millions resident in 2019. The city is located in the State of Illinois, and is classed as a "global city" the Globalization and World Cities Research Network.
+  The Chicago Police Departement started to record the crimes since the year 2001. One of the dataset used contains all the crimes from 2001 to 2019 and one thing is astonishing: there are more than <b>7 millions </b> entries!<br>
+  In this project we have some insight of those data and try to explain them with some socio-economics factors and also the locations of police stations. <br>
+  Here is the first insight: the mean number of the total number of crimes of all types for each days of the year.
   </div>
-
   <!-- Initial circle part 0 -->
   <div id="part0">
     <!--<h1 style="text-align: center;">Chicago Crimes 2001 to now</h1> -->
@@ -37,6 +39,15 @@
     <div id="my_dataviz" style="align-content: center;max-width: 600px; margin: auto;"></div>
 
     <script src="javascript/circle.js"></script>
+
+    <div class="text_grey circle">
+    We see that the crimes are very constant over the day of years. But there are some exceptions! <br>
+    The most obvious one is the big peak of crimes the first of January. The parties the night before for the new year's eve must have something to do with it.
+    Something surely has caught your attention as well: there are peaks of crimes for every first of the month! We have no clear explanation about them, only some suppositions.
+    The first one is the naive one: there is more crimes the first of each month. But surely, even if the dataset is provided by a big city, we believe that those peaks comes from
+    errors in the entries and that the default values if there is no precise date for a crime is the first. <br>
+    Finally, we can see that the day with the lowest crimes rate is christmas, which could be explaind by the fact that the majority of the population of the United States is christian.
+  </div>
 
   </div>
 
@@ -52,6 +63,10 @@
 
 
   <!-- Map section part 2 -->
+
+  <div id="map_text" class="text_grey white_map">
+   The interesting part with those reported crimes is that the data is also spacial, so now let's see on a map what those crimes look like! <i>Hint: don't be shy to press the buttons on the right.</i><br>
+  </div>
   <div id="part2">
     <div id="mapbuttons">
       <div id="police">
@@ -107,7 +122,7 @@
 	      <script src="javascript/areas.js"></script>
 	      <script src="javascript/leaflet-providers.js"></script>
 	      <script src="javascript/leaflet-heat.js"></script>
-	      <script src="javascript/maptest.js"></script>
+	      <script src="javascript/map.js"></script>
         oijsdoijdsoijfoij
 	  </div>
 	  <div id="cyear"></div>
@@ -120,6 +135,10 @@
     <div id="the_board_bar_down_left" style="align-content: center; margin: 0; padding:0; height: 160px;"></div>
     <script src="javascript/board.js"></script>
     <!--<img src="./img/part3.png" style="width:80%;">-->
+  </div>
+
+    <div class="text_grey">
+    We explored the
   </div>
 
 </body>

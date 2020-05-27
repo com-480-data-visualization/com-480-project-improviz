@@ -30,12 +30,37 @@ body {
 
 }
 
-#intro{
+
+.text_grey{
   padding-top: 20px;
   color: #454F68;
   background: #F4F4F4;
   text-align: center;
   font-size: 15px;
+  padding-left: 30vw;
+  padding-right: 30vw;
+}
+
+.circle{
+  background: none;
+  color: #949eb8;
+}
+
+.white_map{
+  padding-top: 20px;
+  color: #f4f4f4;
+  background: #282a2d;
+  padding-bottom: 1vh;
+}
+
+
+#circle_text{
+  padding-top: 20px;
+  color: #454F68;
+  text-align: center;
+  font-size: 15px;
+  padding-left: 30vw;
+  padding-right: 30vw;
 }
 
 #part0{

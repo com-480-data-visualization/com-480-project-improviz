@@ -21,7 +21,7 @@ tgiv_day = ['22/11/2001', '28/11/2002', '27/11/2003', '25/11/2004', '24/11/2005'
 events = ["New Year", "Easter", "Christmas Eve", "Christmas Day", "New Year Eve", "Memorial Day", "Thanksgiving"]
 
 json_sdates = {}
-for y in tqdm(range(2001, 2021)):
+for y in tqdm(range(2001, 2020)):
     ny_d = new_year+str(y)
     e_d = easter[y-2001]
     ind_d = ind_day+str(y)

@@ -16,8 +16,11 @@ var selectType = document.getElementById('typeSelect')
 var selectSpecialDate = document.getElementById('sdateSelect')
 var currentYear = document.getElementById('cyear')
 
+
 //uncheck checkbox
 document.getElementById('checkbox_house').checked = false
+
+var nb_crimes_list = {};
 
 // houses
 var houses_layers = []
@@ -230,10 +233,12 @@ function show_areas () {
         // possible d'optimiser avec un break comme les csv sont triés par areas
       })
 
-      return nb_crimes > 5 ? '#FF0000' :
-       nb_crimes > 1 ? '#FF9F00' :
-       nb_crimes > 0 ? '#FFFF00' :
-                  '#0000FF'
+      nb_crimes_list[area_id.toString()] = nb_crimes;
+      return nb_crimes > 3 ? '#EE3E32' :
+       nb_crimes > 2 ? '#F68838' :
+       nb_crimes > 1 ? '#FBB021' :
+       nb_crimes > 0 ? '#1B8A5A' :
+                  '#1D4877'
     }
 
     function style (feature) {
@@ -246,7 +251,9 @@ function show_areas () {
       }
     }
 
-    current_layers.push(L.geoJSON(areas, {style: style}).addTo(mymap))
+    current_layers.push(L.geoJSON(areas, {style: style}).on('mouseover', function(e) {
+	    var popup = L.popup().setLatLng(e.latlng).setContent(e.sourceTarget.feature.properties.community+'<br>Crimes : '+nb_crimes_list[e.sourceTarget.feature.properties.area_numbe].toString()).openOn(mymap);
+    }).addTo(mymap))
     stopLoadOverlay()
     enableMapButtons()
   }).get()

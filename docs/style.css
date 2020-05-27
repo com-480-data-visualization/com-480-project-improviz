@@ -302,7 +302,7 @@ select:hover {
 }
 
 .leaflet-popup-content-wrapper {
-  background: rgb(200,100,50,0.9) !important;
+  background: rgb(50,50,50,0.9) !important;
   border-radius: 5px 15px 5px 15px !important;
 }
 
@@ -310,7 +310,7 @@ select:hover {
   /*background: rgb(255,0,0);*/
   font-family: Impact, Charcoal, sans-serif;
   font-size: 1.5em;
-  color: #000000;
+  color: #CCCCCC;
 }
 
 .leaflet-popup-tip {

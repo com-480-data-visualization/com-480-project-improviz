@@ -37,6 +37,7 @@ var margin = {
   width_board = window.innerWidth - margin.left - margin.right - 20,
   height_board = window.innerHeight * 0.27 - margin.top - margin.bottom;
 
+
 // append the svg_board object to the body of the page
 var svg_board = d3.select("#the_board_bar")
   .append("svg")
@@ -61,7 +62,7 @@ var yAxis = svg_board.append("g")
 
 var textBoardBar = svg_board.append("text")
   .attr("x", width_board / 2)
-  .attr("y", 200)
+  .attr("y", window.innerHeight * 0.27 - 40)
   .attr("id", "textBoardBar")
   .attr("dy", "2.5em")
   .attr("font-size", "15px")
@@ -467,6 +468,8 @@ var margin_board_bar_down_left = {
   },
   width_board_bar_down_left = window.innerWidth / 1.3 - margin_board_bar_down_left.left - margin_board_bar_down_left.right,
   height_board_bar_down_left = window.innerHeight * 0.17 - margin_board_bar_down_left.top - margin_board_bar_down_left.bottom;
+
+d3.select("#the_board_bar_down_left").style("height", (window.innerHeight * 0.17 - 1) + "px")
 
 // append the svg_board object to the body of the page
 var svg_board_bar_down_left = d3.select("#the_board_bar_down_left")

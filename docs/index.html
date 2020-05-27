@@ -35,7 +35,7 @@
   <!-- Stream graph part 1 -->
   <div id="part1">
     <p>
-      Introduction about crimes in chicago with a streamchart (just bellow). On this streamchart each stream is a category of crimes
+      Introduction about crimes in Chicago with a streamchart (just below). On this streamchart each stream is a category of crimes
     </p>
     <div id="streamgraph" style="align-content: center; margin: auto;"></div>
     <script src="javascript/streamgraph.js"></script>
@@ -45,18 +45,23 @@
 
   <!-- Map section part 2 -->
   <div id="part2">
-	  <!--div id="mapsection"-->
-	  <div id="mapbuttons">
-	    <div id="police">
-        <div class="centered1">
-         <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Police stations</button>
-      </div>
-	    </div>
+    <div id="mapbuttons">
+      <div id="police">
+        <div class="title-police">
+		Do the police stations locations affect crime density ?
+        </div>
+          <div class="centered1">
+           <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
+          </div>
+	</div>
 
 	    <div id="filter_mode">
-		    <div class="filter_button">
-		      <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Areas.</button>
-		    </div>
+	      <div class="title-filter">
+		      Display the number of a crime type for a chosen date
+	      </div>
+	      <div class="filter_button">
+	        <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Filter</button>
+	      </div>
 		    <div class="filter_options">
 		      <datalist id="dateSelect"></datalist>
 		      <input type="date" list="dataSelect" title="date-selector" id="date-selector" placeholder="dd/mm/yyyy" min="2001-01-01" max="2019-12-31">
@@ -64,8 +69,11 @@
 		    </div>
 	    </div>
 	    <div id="sdate_mode">
+	      <div class="title-sdate">
+		      Show the evolution of crime density on special dates
+	      </div>
 	      <div class="sdate_button">
-	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Special Dates</button>
+	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
 	      </div>
 
 	      <div class="sdate_options">
@@ -74,10 +82,16 @@
 
 	    </div>
 	    <div id="aff_houses">
-	      <div class="aff_h">
+	      <!-- <div class="aff_h">
 		      <input type="checkbox" id="checkbox_house" value="2" onclick="displayHouses(this)">
-		       Toggle affordable houses marker<br>
-	      </div>
+		        Toggle affordable houses marker<br>
+	      </div> -->
+
+        <label class="container_checkbox">
+          <input id="checkbox_house" type="checkbox" value="2" onclick="displayHouses(this)">
+          <span class="checkmark"></span><span class="checkmark_text">Toggle affordable houses</span>
+        </label>
+
 	    </div>
 	  </div>
 	  <div id="map">

@@ -148,7 +148,23 @@ d3.csv("data/Crimes_board.csv", function(error, datapt) {
   }
 });
 
+var dataset_board_down_left;
+d3.csv("data/Socio_board_left.csv", function(error, datapt) {
+  // If error is not null, something went wrong.
+  if (error) {
+    console.log(error); //Log the error.
+  } else {
+    //console.log(datapt); //Log the data.
+    dataset_board_down_left = datapt; // Give the data a global scope
+    //Call some other functions that generate the visualization
+  }
+});
 
+var textBottomCat1;
+var textBottomCat2;
+var textBottomCat3;
+var textBottomCat4;
+var textBottomCat5;
 // Initialize the plot with the first dataset
 //update(dataset_board, "2007-19.0")
 //update(data1, "value")
@@ -158,8 +174,8 @@ d3.csv("data/Crimes_board.csv", function(error, datapt) {
 //==========================================================================
 
 
-var width = 550
-var height = 550
+var width = 500
+var height = 500
 var margin = 5
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -335,12 +351,19 @@ svg_board_select
     place_column = d.data.key + ".0"
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
+    update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
     textInCercle1.text("Distric n°" + place_column)
     textInCercle2.text(date_column)
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
     d3.select(this).attr('fill', "#C57063")
+    console.log(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)])
+    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)])
+    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)])
+    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)])
+    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)])
+    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)])
   })
 
 svg_board_select
@@ -420,3 +443,156 @@ var textInCercle2 = svg_board_select.append("text")
   .attr("font-size", "23px")
   .style("text-anchor", "middle")
   .text("");
+
+
+
+//========================================================================================
+
+// set the dimensions and margins of the graph
+var margin_board_bar_down_left = {
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: -10
+  },
+  width_board_bar_down_left = window.innerWidth / 1.3 - margin_board_bar_down_left.left - margin_board_bar_down_left.right,
+  height_board_bar_down_left = 160 - margin_board_bar_down_left.top - margin_board_bar_down_left.bottom;
+
+// append the svg_board object to the body of the page
+var svg_board_bar_down_left = d3.select("#the_board_bar_down_left")
+  .append("svg")
+  .attr("width", width_board_bar_down_left + margin_board_bar_down_left.left + margin_board_bar_down_left.right)
+  .attr("height", height_board_bar_down_left + margin_board_bar_down_left.top + margin_board_bar_down_left.bottom)
+  .append("g")
+  .attr("transform",
+    "translate(" + margin_board_bar_down_left.left + "," + margin_board_bar_down_left.top + ")");
+
+// Initialize the X axis
+var x_board_bar_down_left = d3.scaleBand()
+  .range([0, width_board_bar_down_left])
+  .padding(0.1);
+var xAxis_board_bar_down_left = svg_board_bar_down_left.append("g")
+  .attr("transform", "translate(0," + height_board_bar_down_left + ")")
+
+// Initialize the Y axis
+var y_board_bar_down_left = d3.scaleLinear()
+  .range([height_board_bar_down_left, 0]);
+var yAxis_board_bar_down_left = svg_board_bar_down_left.append("g")
+  .attr("class", "myYaxis_bar_down_left")
+
+
+// A function that create / update the plot for a given variable:
+function update_down_left(data, value_nb) {
+
+  // Update the X axis
+  x_board_bar_down_left.domain(data.map(function(d) {
+    return d.group;
+  }))
+  //xAxis.call(d3.axisBottom(x))
+
+  // Update the Y axis
+  y_board_bar_down_left.domain([0, d3.max(data, function(d) {
+    return 57;
+  })]);
+  yAxis_board_bar_down_left.transition().duration(1000).call(d3.axisLeft(y_board_bar_down_left));
+
+  //textBoardBar.text(function(d) {
+  //return d.group + " " + d[value_nb];
+  //})
+  // Create the u variable
+  var u_stream_bar_down_left = svg_board_bar_down_left.selectAll("rect")
+    .data(data)
+    .attr("class", "board_bar_down_left")
+
+  // Draw the axis
+  svg_board_bar_down_left
+    .append("g")
+    .attr("transform", "translate(0,10)") // This controls the vertical position of the Axis
+    .call(d3.axisBottom(x_board_bar_down_left));
+
+  u_stream_bar_down_left
+    .enter()
+    .append("rect") // Add a new rect for each new elements
+    .merge(u_stream_bar_down_left) // get the already existing elements as well
+    .transition() // and apply changes to all of them
+    .duration(400)
+    .attr("x", function(d) {
+      return x_board_bar_down_left(d.group);
+    })
+    .attr("y", function(d) {
+      return y_board_bar_down_left(d[value_nb]);
+    })
+    .attr("width", x_board_bar_down_left.bandwidth())
+    .attr("height", function(d) {
+      //return y(d[2005 + "-" + place_column]);
+      //return 70;
+      //console.log(d)
+      //return 10;
+      //console.log(y_board_bar_down_left(d[value_nb]))
+      return height_board_bar_down_left - y_board_bar_down_left(d[value_nb]);
+    })
+    .attr("fill", "#282A2D")
+
+
+  d3.selectAll("#textBottomCat").remove();
+  textBottomCat1 = svg_board_bar_down_left.append("text")
+    .attr("x", (width_board_bar_down_left / 5) * 0.5)
+    .attr("y", 10)
+    .attr("dy", "2.5em")
+    .attr("id", "textBottomCat")
+    .attr("font-size", "18px")
+    .style('fill', '#C57063')
+    .style('fill', '#485060')
+    .style("text-anchor", "middle")
+    .text("");
+
+  textBottomCat2 = svg_board_bar_down_left.append("text")
+    .attr("x", (width_board_bar_down_left / 5) * 1.5)
+    .attr("y", 10)
+    .attr("dy", "2.5em")
+    .attr("id", "textBottomCat")
+    .attr("font-size", "18px")
+    .style('fill', '#C57063')
+    .style('fill', '#485060')
+    .style("text-anchor", "middle")
+    .text("");
+
+  textBottomCat3 = svg_board_bar_down_left.append("text")
+    .attr("x", (width_board_bar_down_left / 5) * 2.5)
+    .attr("y", 10)
+    .attr("dy", "2.5em")
+    .attr("id", "textBottomCat")
+    .attr("font-size", "18px")
+    .style('fill', '#C57063')
+    .style('fill', '#485060')
+    .style("text-anchor", "middle")
+    .text("");
+
+  textBottomCat4 = svg_board_bar_down_left.append("text")
+    .attr("x", (width_board_bar_down_left / 5) * 3.5)
+    .attr("y", 10)
+    .attr("dy", "2.5em")
+    .attr("id", "textBottomCat")
+    .attr("font-size", "18px")
+    .style('fill', '#C57063')
+    .style('fill', '#485060')
+    .style("text-anchor", "middle")
+    .text("");
+
+  textBottomCat5 = svg_board_bar_down_left.append("text")
+    .attr("x", (width_board_bar_down_left / 5) * 4.5)
+    .attr("y", 10)
+    .attr("dy", "2.5em")
+    .attr("id", "textBottomCat")
+    .attr("font-size", "18px")
+    .style('fill', '#C57063')
+    .style('fill', '#485060')
+    .style("text-anchor", "middle")
+    .text("");
+  // If less group in the new dataset, I delete the ones not in use anymore
+  u_stream_bar_down_left
+    .exit()
+    .remove()
+
+
+}

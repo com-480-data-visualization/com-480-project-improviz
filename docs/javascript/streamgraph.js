@@ -5,14 +5,14 @@ var margin_stream = {
     bottom: 30,
     left: 60
   },
-  width = 0.8 * window.innerWidth,
-  height = 690 - margin_stream.top - margin_stream.bottom;
+  width_streamgraph = 0.8 * window.innerWidth,
+  height_streamgraph = 690 - margin_stream.top - margin_stream.bottom;
 
 // append the svg object to the body of the page
 var svg2 = d3.select("#streamgraph")
   .append("svg")
-  .attr("width", width + margin_stream.left + margin_stream.right)
-  .attr("height", height + margin_stream.top + margin_stream.bottom)
+  .attr("width", width_streamgraph + margin_stream.left + margin_stream.right)
+  .attr("height", height_streamgraph + margin_stream.top + margin_stream.bottom)
   .append("g")
   .attr("transform",
     "translate(" + margin_stream.left + "," + margin_stream.top + ")");
@@ -34,8 +34,8 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     }))
     .range([0, 650]);
   svg2.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x_stream).tickSize(-height * 1).tickValues([1, 230]))
+    .attr("transform", "translate(0," + height_streamgraph + ")")
+    .call(d3.axisBottom(x_stream).tickSize(-height_streamgraph * 1).tickValues([1, 230]))
     .select(".domain").remove()
 
   svg2.selectAll(".tick line").attr("stroke", "#f2f2f2")
@@ -43,20 +43,20 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   // Add X axis label:
   svg2.append("text")
     .attr("text-anchor", "end")
-    .attr("x", width / 2)
-    .attr("y", height - 30)
+    .attr("x", width_streamgraph / 2)
+    .attr("y", height_streamgraph - 30)
     .style('fill', '#FAFAFA')
     .text("2001-2020");
 
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([-15000, 25000])
-    .range([height / 4, height]);
+    .range([height_streamgraph / 4, height_streamgraph]);
 
   // color palette
-  var color = d3.scaleOrdinal()
+  var color_streamgraph = d3.scaleOrdinal()
     .domain(keys)
-    .range(['#FAFAFA', '#E7E7E9', '#D4D5D9', '#BEBFC5', '#A3A5AD', '#FFD700', '#FF4500', '#FFA500'])
+    .range(['#FAFAFA', '#E7E7E9', '#D4D5D9', '#BEBFC5', '#A3A5AD', '#888A95', '#71737F', '#565861'])
 
   //stack the data?
   var stackedData = d3.stack()
@@ -76,7 +76,7 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
     Tooltip.style("opacity", 1)
-    d3.selectAll(".myArea").style("opacity", .2)
+    d3.selectAll(".area_streamgraph").style("opacity", .2)
     d3.select(this)
       .style("stroke", "white")
       .style("opacity", 1)
@@ -88,8 +88,8 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
   }
   var mouseleave = function(d) {
     Tooltip.style("opacity", 0)
-    d3.selectAll(".myArea").style("opacity", 1).style("stroke", "none").style("fill", function(d) {
-      return color(d.key);
+    d3.selectAll(".area_streamgraph").style("opacity", 1).style("stroke", "none").style("fill", function(d) {
+      return color_streamgraph(d.key);
     })
   }
 
@@ -110,9 +110,9 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     .data(stackedData)
     .enter()
     .append("path")
-    .attr("class", "myArea")
+    .attr("class", "area_streamgraph")
     .style("fill", function(d) {
-      return color(d.key);
+      return color_streamgraph(d.key);
     })
     .attr("d", area)
     .on("mouseover", mouseover)

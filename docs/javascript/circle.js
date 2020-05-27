@@ -5,7 +5,7 @@ var margin = {
     bottom: 50,
     left: 50
   },
-  width = 560,
+  width = 600,
   height = 560,
   innerRadius = 240,
   outerRadius = Math.min(width, height) / 2; // the outerRadius goes from the middle of the SVG area to the border
@@ -18,7 +18,10 @@ var svg = d3.select("#my_dataviz")
   .append("g")
   .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 100) + ")"); // Add 100 on Y translation, cause upper bars are longer
 
-d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
+d3.csv("data/crimes_mean.csv", function(data) {
+
+  var max_y = 1100;
+  var exp = 1.15;
 
   var textNbCrimes = svg.append("text")
     .attr("x", 0)
@@ -48,12 +51,12 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
   // Y scale
   var y = d3.scaleRadial()
     .range([innerRadius, outerRadius]) // Domain will be define later.
-    .domain([0, 20000]); // Domain of Y is from 0 to the max seen in the data
+    .domain([0, max_y]); // Domain of Y is from 0 to the max seen in the data
 
   // Second barplot Scales
   var ybis = d3.scaleRadial()
     .range([innerRadius, 200]) // Domain will be defined later.
-    .domain([0, 20000]);
+    .domain([0, max_y]);
 
   // Add bars
   svg.append("g")
@@ -69,14 +72,16 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       d3.selectAll("#BarCercle2").attr("fill", "#14161A");
       d3.select(this).attr("fill", "#939CAE");
       suffix = 'th';
-      if (d.Date < 2) {
-        suffix = 'st';
-      } else if (d.Date < 3) {
-        suffix = 'nd';
-      } else if (d.Date < 4) {
-        suffix = 'rd';
+      var pad_month = "";
+      var pad_day = "";
+
+      if (d.Month < 10){
+        pad_month = "0"
       }
-      return textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
+      if (d.Day < 10){
+        pad_day = "0"
+      }
+      return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
     .on("mouseout", function(d) {
       //e.attr("log", 0);
@@ -98,7 +103,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       //.attr("id", "BarCercle")
       .innerRadius(innerRadius)
       .outerRadius(function(d) {
-        return y(d['Crimes'] - 10000);
+        return y((d['Crimes']-500)**exp);
       })
       .startAngle(function(d) {
         return x(d.Date);
@@ -115,15 +120,15 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     })
     .attr("fill", "#444B5B")
     .on('start', function(d) {
-      var suffix = 'th';
-      if (d.Date < 2) {
-        suffix = 'st';
-      } else if (d.Date < 3) {
-        suffix = 'nd';
-      } else if (d.Date < 4) {
-        suffix = 'rd';
+      var pad_month = "";
+      var pad_day = "";
+      if (d.Month < 10){
+        pad_month = "0"
       }
-      textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
+      if (d.Day < 10){
+        pad_day = "0"
+      }
+      textNbCrimes.text(parseInt(d.Crimes)), textElements.text("average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
     .transition()
     .duration(5000)
@@ -163,7 +168,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
         return ybis(0)
       })
       .outerRadius(function(d) {
-        return ybis(d['Crimes'] - 10000);
+        return ybis((d['Crimes']-500));
       })
       .startAngle(function(d) {
         return x(d.Date);

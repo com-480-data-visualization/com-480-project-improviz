@@ -63,25 +63,39 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .append("path")
     .attr("fill", "#14161A")
     .on("mouseover", function(d) {
-      d3.selectAll("path").transition().duration(0);
-      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement").duration(500);
+      //d3.selectAll("path").transition().duration(0);
+      d3.selectAll("*").transition("movement")
+      d3.selectAll("#BarCercle").attr("fill", "#14161A");
+      d3.selectAll("#BarCercle2").attr("fill", "#14161A");
+      d3.select(this).attr("fill", "#939CAE");
+      suffix = 'th';
+      if (d.Date < 2) {
+        suffix = 'st';
+      } else if (d.Date < 3) {
+        suffix = 'nd';
+      } else if (d.Date < 4) {
+        suffix = 'rd';
+      }
+      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + suffix + " day of the year from 2001 to now");
     })
     .on("mouseout", function(d) {
-	    //e.attr("log", 0);
-	    d3.transition().duration(500)
-    .delay(function(d) {
-      return x(d.Date) * 20000;
+      //e.attr("log", 0);
+      /*
+      d3.transition().duration(500)
+        .delay(function(d) {
+          return x(d.Date) * 20000;
+        })
+        //.attr("fill", "#444B5B")
+        .transition()
+        .duration(5000)
+        .delay(function(d) {
+          return 2000;
+        })*/
+      //.attr("fill", "#14161A")
     })
-    .attr("fill", "#444B5B")
-    .transition()
-    .duration(5000)
-    .delay(function(d) {
-      return 2000;
-    })
-    .attr("fill", "#14161A")
-    })
-    .attr("id", "test3")
+    .attr("id", "BarCercle")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
+      //.attr("id", "BarCercle")
       .innerRadius(innerRadius)
       .outerRadius(function(d) {
         return y(d['Crimes'] - 10000);
@@ -101,7 +115,15 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     })
     .attr("fill", "#444B5B")
     .on('start', function(d) {
-      textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now");
+      var suffix = 'th';
+      if (d.Date < 2) {
+        suffix = 'st';
+      } else if (d.Date < 3) {
+        suffix = 'nd';
+      } else if (d.Date < 4) {
+        suffix = 'rd';
+      }
+      textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + suffix + " day of the year from 2001 to now");
     })
     .transition()
     .duration(5000)
@@ -117,24 +139,25 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .enter()
     .append("path")
     .attr("fill", "#14161A")
-/*    .on("mouseover", function(d) {
-      d3.selectAll("path").transition().duration(0);
-      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement2").duration(500);;
-    })*/
-/*    .on("mouseout", function(d) {
-	    //e.attr("log", 0);
-	    d3.transition().duration(500)
-    .delay(function(d) {
-      return x(d.Date) * 20000;
-    })
-    .attr("fill", "#444B5B")
-    .transition()
-    .duration(5000)
-    .delay(function(d) {
-      return 2000;
-    })
-    .attr("fill", "#14161A")
-    })*/
+    /*    .on("mouseover", function(d) {
+          d3.selectAll("path").transition().duration(0);
+          return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement2").duration(500);;
+        })*/
+    /*    .on("mouseout", function(d) {
+    	    //e.attr("log", 0);
+    	    d3.transition().duration(500)
+        .delay(function(d) {
+          return x(d.Date) * 20000;
+        })
+        .attr("fill", "#444B5B")
+        .transition()
+        .duration(5000)
+        .delay(function(d) {
+          return 2000;
+        })
+        .attr("fill", "#14161A")
+        })*/
+    .attr("id", "BarCercle2")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
       .innerRadius(function(d) {
         return ybis(0)

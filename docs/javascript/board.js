@@ -541,8 +541,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#C57063')
-    .style('fill', '#485060')
+    .style('fill', '#6D7992')
     .style("text-anchor", "middle")
     .text("");
 
@@ -552,8 +551,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#C57063')
-    .style('fill', '#485060')
+    .style('fill', '#6D7992')
     .style("text-anchor", "middle")
     .text("");
 
@@ -563,8 +561,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#C57063')
-    .style('fill', '#485060')
+    .style('fill', '#6D7992')
     .style("text-anchor", "middle")
     .text("");
 
@@ -574,8 +571,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#C57063')
-    .style('fill', '#485060')
+    .style('fill', '#6D7992')
     .style("text-anchor", "middle")
     .text("");
 
@@ -585,8 +581,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#C57063')
-    .style('fill', '#485060')
+    .style('fill', '#6D7992')
     .style("text-anchor", "middle")
     .text("");
   // If less group in the new dataset, I delete the ones not in use anymore

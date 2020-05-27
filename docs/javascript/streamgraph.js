@@ -17,11 +17,7 @@ var svg2 = d3.select("#streamgraph")
   .attr("transform",
     "translate(" + margin_stream.left + "," + margin_stream.top + ")");
 
-
-
-
 // Parse the Data
-//d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/5_OneCatSevNumOrdered_wide.csv", function(data) {
 d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
 
   // List of groups = header of the csv files
@@ -33,12 +29,15 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
       return d.date;
     }))
     .range([0, 650]);
+  //
+
   svg2.append("g")
     .attr("transform", "translate(0," + height_streamgraph + ")")
     .call(d3.axisBottom(x_stream).tickSize(-height_streamgraph * 1).tickValues([1, 230]))
     .select(".domain").remove()
 
   svg2.selectAll(".tick line").attr("stroke", "#f2f2f2")
+  svg2.selectAll(".tick text").attr("opacity", 0)
 
   // Add X axis label:
   svg2.append("text")
@@ -118,5 +117,9 @@ d3.csv("data/Crimes_by_day_by_type.csv", function(data) {
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
+
+
+  console.log(d3.select("#tickStream"));
+
 
 })

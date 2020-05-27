@@ -36,9 +36,17 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .attr("x", 0)
     .attr("y", 0)
     .attr("dy", "1.5em")
-    .attr("font-size", "15px")
+    .attr("font-size", "14px")
     .style("text-anchor", "middle")
     .text("Crimes one day of the year from 2001 to now");
+
+  svg.append("text")
+    .attr("x", 0)
+    .attr("y", 25)
+    .attr("dy", "1.5em")
+    .attr("font-size", "14px")
+    .style("text-anchor", "middle")
+    .text("2001 to 2019");
 
   // X scale
   var x = d3.scaleBand()

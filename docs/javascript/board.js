@@ -104,7 +104,7 @@ function update(data, value_nb) {
       savedThisCateg = this
       textBoardBar.text(d.group + " " + d[value_nb])
       d3.selectAll(".bar_board").attr("fill", "#282A2D")
-      d3.select(this).attr('fill', "#C57063")
+      d3.select(this).attr('fill', "#69779B")
     })
 
   u_stream
@@ -121,7 +121,7 @@ function update(data, value_nb) {
     })
     .attr("width", x.bandwidth())
     .attr("height", function(d) {
-      d3.select(savedThisCateg).attr('fill', "#C57063")
+      d3.select(savedThisCateg).attr('fill', "#69779B")
       //return y(d[2005 + "-" + place_column]);
       return y(d[value_nb]);
     })
@@ -132,7 +132,7 @@ function update(data, value_nb) {
   u_stream
     .exit()
     .remove()
-  d3.select(savedThisCateg).attr('fill', "#C57063")
+  d3.select(savedThisCateg).attr('fill', "#69779B")
 }
 
 
@@ -156,6 +156,18 @@ d3.csv("data/Socio_board_left.csv", function(error, datapt) {
   } else {
     //console.log(datapt); //Log the data.
     dataset_board_down_left = datapt; // Give the data a global scope
+    //Call some other functions that generate the visualization
+  }
+});
+
+var dataset_district_name;
+d3.csv("data/district_name.csv", function(error, datapt) {
+  // If error is not null, something went wrong.
+  if (error) {
+    console.log(error); //Log the error.
+  } else {
+    //console.log(datapt); //Log the data.
+    dataset_district_name = datapt; // Give the data a global scope
     //Call some other functions that generate the visualization
   }
 });
@@ -352,13 +364,12 @@ svg_board_select
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
     update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
-    textInCercle1.text("Distric n°" + place_column)
+    textInCercle1.text("Area :" + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
     textInCercle2.text(date_column)
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
-    d3.select(this).attr('fill', "#C57063")
-    console.log(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)])
+    d3.select(this).attr('fill', "#69779B")
     textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
     textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
     textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
@@ -402,12 +413,11 @@ svg_board_select
     date_column = d.data.key
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
-    textInCercle1.text("Distric n°" + place_column)
     textInCercle2.text(date_column)
     d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_light(d.data.key))
     })
-    d3.select(this).attr('fill', "#C57063")
+    d3.select(this).attr('fill', "#69779B")
   })
 
 svg_board_select
@@ -541,7 +551,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#6D7992')
+    .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
 
@@ -551,7 +561,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#6D7992')
+    .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
 
@@ -561,7 +571,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#6D7992')
+    .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
 
@@ -571,7 +581,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#6D7992')
+    .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
 
@@ -581,7 +591,7 @@ function update_down_left(data, value_nb) {
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
     .attr("font-size", "18px")
-    .style('fill', '#6D7992')
+    .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
   // If less group in the new dataset, I delete the ones not in use anymore

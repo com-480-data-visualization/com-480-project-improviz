@@ -69,7 +69,7 @@
   <div id="part2">
     <div id="mapbuttons">
       <div id="police">
-        <div class="title-police">
+        <div class="title-map">
 		Do the police stations locations affect crime density ?
         </div>
           <div class="centered1">
@@ -78,7 +78,7 @@
 	</div>
 
 	    <div id="filter_mode">
-	      <div class="title-filter">
+	      <div class="title-map">
 		      Display the number of a crime type for a chosen date
 	      </div>
 	      <div class="filter_button">
@@ -86,22 +86,20 @@
 	      </div>
 		    <div class="filter_options">
 		      <datalist id="dateSelect"></datalist>
-		      <input type="date" list="dataSelect" title="date-selector" id="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
-		      <select id="typeSelect"></select>
+		      <input type="date" list="dataSelect" title="date-selector" class="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
+		      <select id="typeSelect" class="selector"></select>
 		    </div>
 	    </div>
 	    <div id="sdate_mode">
-	      <div class="title-sdate">
+	      <div class="title-map">
 		      Show the evolution of crime density on holidays
 	      </div>
+        <div class="sdate_options">
+          <select id="sdateSelect" class="selector"></select>
+        </div>
 	      <div class="sdate_button">
 	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
 	      </div>
-
-	      <div class="sdate_options">
-	        <select id="sdateSelect"></select>
-	      </div>
-
 	    </div>
 	    <div id="aff_houses">
 	      <!-- <div class="aff_h">

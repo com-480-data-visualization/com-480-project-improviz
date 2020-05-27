@@ -201,6 +201,28 @@ body {
 	color: white;
 }
 
+.date-selector {
+  font-size:1.2em;
+  display:inline-block;
+  transition:all .5s;
+  border: none;
+  padding: .8em 1em;
+  background:#69779b;
+  margin-bottom: 5px;
+}
+
+.selector {
+  font-size:1.2em;
+  display:inline-block;
+  transition:all .5s;
+  border: none;
+  background:#69779b;
+}
+
+#date-selector:hover{
+  background: #454f68;
+}
+
 .btn {
   font-size:1.2em;
   display:inline-block;
@@ -224,9 +246,12 @@ body {
   padding-top: 10%;
 }
 
-.title-police {
+.title-map {
   padding-top: 0%;
   color: #BBBBBB;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
 }
 
 .filter_button{
@@ -241,28 +266,20 @@ body {
   width: 50%;
 }
 
-.title-filter {
-  padding-top: 0%;
-  color: #BBBBBB;
-}
 
 .sdate_button{
-  padding-top: 3%;
+  padding-top: 10%;
   float: right;
   width: 50%;
 }
 
 .sdate_options{
-  padding-top: 3%;
+  padding-top: 12%;
   float: left;
   width: 50%;
 }
 
 
-.title-sdate {
-  padding-top: 0%;
-  color: #BBBBBB;
-}
 
 /* .aff_h{
   padding-top: 14%;
@@ -303,13 +320,12 @@ select:hover {
 
 .checkmark_text {
   position: absolute;
-  color: grey;
-  top: 20%;
+  color: #BBBBBB;
+  top: 30%;
   left: 40%;
-  /* padding-left: -15px; */
-  padding-top: -50px;
-  height: 25px;
-  width: 25px;
+  height: 100px;
+  width: 100px;
+
 }
 
 /* The container */
@@ -319,7 +335,7 @@ select:hover {
   /* padding-left: 35px; */
   top: 50%;
   cursor: pointer;
-  font-size: 20px;
+  /* font-size: 15px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

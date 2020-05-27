@@ -203,8 +203,15 @@ function show_areas () {
   startLoadOverlay()
   disableMapButtons()
 
-  var d = document.getElementById('dateSelect')
-  var date = d.options[d.selectedIndex].value
+  var d = document.getElementById('date-selector')
+  var sel_date = d.value.split('-')
+  if ((parseInt(sel_date[0]) < 2001) || (parseInt(sel_date[0]) > 2019)) {
+    alert("Select valid date between 2001 and 2019");
+    enableMapButtons()
+    stopLoadOverlay()
+    return;
+  }
+  var date = sel_date[2]+'/'+sel_date[1]+'/'+sel_date[0]
   var t = document.getElementById('typeSelect')
   var type = t.options[t.selectedIndex].value
   var year = date.split('/')
@@ -284,51 +291,6 @@ function show_sdates () {
     stopLoadOverlay()
     animate_sdatemaps(data, sdate)
   })
-}
-
-var monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-var monthDaysBis = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-for (var y = 2001; y <= 2019; y++) {
-  for (var m = 1; m <= 12; m++) {
-    if (y % 4 == 0) {
-      for (d = 1; d <= monthDaysBis[m - 1]; d++) {
-        if (d < 10) {
-          var day = '0' + d.toString(10)
-        } else {
-          var day = d.toString(10)
-        }
-        if (m < 10) {
-          var month = '0' + m.toString(10)
-        } else {
-          var month = m.toString(10)
-        }
-        var val = day + '/' + month + '/' + y.toString(10)
-        var option = document.createElement('option')
-        option.value = val
-        option.text = val
-        selectDate.appendChild(option)
-      }
-    } else {
-      for (d = 1; d <= monthDays[m - 1]; d++) {
-        if (d < 10) {
-          var day = '0' + d.toString(10)
-        } else {
-          var day = d.toString(10)
-        }
-        if (m < 10) {
-          var month = '0' + m.toString(10)
-        } else {
-          var month = m.toString(10)
-        }
-        var val = day + '/' + month + '/' + y.toString(10)
-        var option = document.createElement('option')
-        option.value = val
-        option.text = val
-        selectDate.appendChild(option)
-      }
-    }
-  }
 }
 
 d3.json('data/types_json.json', function (data) {

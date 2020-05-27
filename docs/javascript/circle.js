@@ -72,12 +72,12 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .data(data)
     .enter()
     .append("path")
-    .attr("fill", "#14161A")
+    .attr("fill", "#21252b")
     .on("mouseover", function(d) {
       //d3.selectAll("path").transition().duration(0);
       d3.selectAll("*").transition("movement")
-      d3.selectAll("#BarCercle").attr("fill", "#14161A");
-      d3.selectAll("#BarCercle2").attr("fill", "#14161A");
+      d3.selectAll("#BarCercle").attr("fill", "#21252b");
+      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
       d3.select(this).attr("fill", "#939CAE");
       suffix = 'th';
       var pad_month = "";
@@ -104,7 +104,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
         .delay(function(d) {
           return 2000;
         })*/
-      //.attr("fill", "#14161A")
+      //.attr("fill", "#21252b")
     })
     .attr("id", "BarCercle")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
@@ -143,7 +143,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .delay(function(d) {
       return 2000;
     })
-    .attr("fill", "#14161A")
+    .attr("fill", "#21252b")
 
   // Add the second series
   svg.append("g")
@@ -151,7 +151,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .data(data)
     .enter()
     .append("path")
-    .attr("fill", "#14161A")
+    .attr("fill", "#21252b")
     /*    .on("mouseover", function(d) {
           d3.selectAll("path").transition().duration(0);
           return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + " day of the year from 2001 to now"), d3.selectAll("*").transition("movement2").duration(500);;
@@ -168,7 +168,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
         .delay(function(d) {
           return 2000;
         })
-        .attr("fill", "#14161A")
+        .attr("fill", "#21252b")
         })*/
     .attr("id", "BarCercle2")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
@@ -197,6 +197,6 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .delay(function(d) {
       return 2000;
     })
-    .attr("fill", "#14161A")
+    .attr("fill", "#21252b")
 
 });

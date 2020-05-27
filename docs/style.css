@@ -15,7 +15,7 @@ body {
 #part0{
   background-image: url('img/chicago.jpg');
   background-size: cover;
-  height: 160vh;
+  height: 100vh;
   background-color: #282A2D;
 }
 

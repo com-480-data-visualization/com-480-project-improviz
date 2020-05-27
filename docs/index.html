@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <link rel="stylesheet" href="style.css" />
   <!-- LEAFLET -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
   <title>Chicago Crimes</title>
 </head>
@@ -16,7 +16,7 @@
   <script src="https://d3js.org/d3.v4.js"></script>
 
   <div id="load_overlay">
-	  <img id="lgif" src="./img/loading_police.gif" alt="loading" style="display: inline-block;">
+    <img id="lgif" src="./img/loading_police.gif" alt="loading" style="display: inline-block;">
   </div>
 
   <div id="proj_title">
@@ -24,10 +24,11 @@
     Exploring the crimes in Chicago from 2001 to 2019
   </div>
   <div id="intro" class="text_grey">
-  Chicago is the third most populated city in the United States with almost 3 millions resident in 2019. The city is located in the State of Illinois, and is classed as a "Alpha world city" the Globalization and World Cities Research Network (GaWC).
-  The Chicago Police Departement started to record the crimes since the year 2001. An astonishing observation is that the dataset containing all the crimes from 2001 to 2019 has more than <b>7 millions </b> entries!<br>
-  In this project we present the datas and try to show the relationship/link between the number of crimes and some socio-economics factors, and the locations of police stations. <br>
-  Here is the first insight: the mean number of the total number of crimes of all types for each days of the year.
+    Chicago is the third most populated city in the United States with almost 3 millions resident in 2019. The city is located in the State of Illinois, and is classed as a "Alpha world city" the Globalization and World Cities Research Network
+    (GaWC).
+    The Chicago Police Departement started to record the crimes since the year 2001. An astonishing observation is that the dataset containing all the crimes from 2001 to 2019 has more than <b>7 millions </b> entries!<br>
+    In this project we present the datas and try to show the relationship/link between the number of crimes and some socio-economics factors, and the locations of police stations. <br>
+    Here is the first insight: the mean number of the total number of crimes of all types for each days of the year.
   </div>
   <!-- Initial circle part 0 -->
   <div id="part0">
@@ -41,13 +42,14 @@
     <script src="javascript/circle.js"></script>
 
     <div class="text_grey circle">
-    We see that the average number of crimes are generally constant over the observed years. But there are some exceptions! <br>
-    The most obvious one is the big peaks of crimes the first of January. The parties the night before the new year's eve must have something to do with it.
-    Something surely has caught your attention as well: there are peaks of crimes for every first of the month! We have no clear explanation about them, only some suppositions.
-    The first one is the naive one: the first of each month has an impact on crime, maybe due to people having received their salary recently or thinking the beginning of a new month is the occasion to do crazy stuff. But surely, even if the dataset is provided by a big city, we believe that those peaks comes from
-    errors in the entries and that if there is no precise date for a crime, the value is defaulted to the first of the month. <br>
-    Finally, we can see that the day with the lowest crimes rate is christmas, which could be explaind by the fact that the majority of the population of the United States is christian.
-  </div>
+      We see that the average number of crimes are generally constant over the observed years. But there are some exceptions! <br>
+      The most obvious one is the big peaks of crimes the first of January. The parties the night before the new year's eve must have something to do with it.
+      Something surely has caught your attention as well: there are peaks of crimes for every first of the month! We have no clear explanation about them, only some suppositions.
+      The first one is the naive one: the first of each month has an impact on crime, maybe due to people having received their salary recently or thinking the beginning of a new month is the occasion to do crazy stuff. But surely, even if the
+      dataset is provided by a big city, we believe that those peaks comes from
+      errors in the entries and that if there is no precise date for a crime, the value is defaulted to the first of the month. <br>
+      Finally, we can see that the day with the lowest crimes rate is christmas, which could be explaind by the fact that the majority of the population of the United States is christian.
+    </div>
 
   </div>
 
@@ -64,7 +66,7 @@
   <!-- Map section part 2 -->
 
   <div id="map_text" class="text_grey white_map">
-   The interesting part with those reported crimes is that the data is also spacial, so now let's see on a map what those crimes look like! <i>Hint: don't be shy to press the buttons on the right.</i><br>
+    The interesting part with those reported crimes is that the data is also spacial, so now let's see on a map what those crimes look like! <i>Hint: don't be shy to press the buttons on the right.</i><br>
   </div>
   <div id="part2">
     <div id="mapbuttons">
@@ -112,38 +114,38 @@
           <span class="checkmark"></span><span class="checkmark_text">Toggle affordable houses</span>
         </label>
 
-	    </div>
-	  </div>
-	  <div id="map">
-	      <script src="javascript/icons.js"></script>
-	      <script src="javascript/areas.js"></script>
-	      <script src="javascript/leaflet-providers.js"></script>
-	      <script src="javascript/leaflet-heat.js"></script>
-	      <script src="javascript/map.js"></script>
-        oijsdoijdsoijfoij
-	  </div>
-	  <div id="cyear"></div>
+      </div>
+    </div>
+    <div id="map">
+      <script src="javascript/icons.js"></script>
+      <script src="javascript/areas.js"></script>
+      <script src="javascript/leaflet-providers.js"></script>
+      <script src="javascript/leaflet-heat.js"></script>
+      <script src="javascript/map.js"></script>
+      oijsdoijdsoijfoij
+    </div>
+    <div id="cyear"></div>
   </div>
 
   <!-- Statistical section part 3 -->
   <div id="part3">
     <div id="the_board_bar" style="align-content: center; margin: 0;"></div>
     <div id="the_board_select" style="align-content: center; margin: 0;"></div>
-    <div id="the_board_bar_down_left" style="align-content: center; margin: 0; padding:0; height: 160px;"></div>
+    <div id="the_board_bar_down_left" style="align-content: center; margin: 0; padding:0;"></div>
     <script src="javascript/board.js"></script>
     <!--<img src="./img/part3.png" style="width:80%;">-->
   </div>
 
-    <div class="text_grey conclusion">
+  <div class="text_grey conclusion">
     This is the end of this data journey... So what's next ? We have a couple ideas of interesting features that could be done with those datas. <br>
     <b>Machine learning</b> algorithms can be used to predict the crimes on the city in order to help the police to place the patrols accordingly.
     Even more, a path recommander that propose the safest routes to go from a point to another could be done.
   </div>
 
 
-<div class="text_grey footer">
+  <div class="text_grey footer">
     Team Improviz - &copy; All rights reserved
-</div>
+  </div>
 
 </body>
 

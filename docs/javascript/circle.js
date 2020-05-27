@@ -76,7 +76,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       } else if (d.Date < 4) {
         suffix = 'rd';
       }
-      return textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + suffix + " day of the year from 2001 to now");
+      return textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
     })
     .on("mouseout", function(d) {
       //e.attr("log", 0);
@@ -123,7 +123,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
       } else if (d.Date < 4) {
         suffix = 'rd';
       }
-      textNbCrimes.text(d.Crimes), textElements.text("crimes the " + d.Date + suffix + " day of the year from 2001 to now");
+      textNbCrimes.text(d.Crimes), textElements.text("Average number of crimes the " + d.Date + suffix + " day of the years 2001 to 2019");
     })
     .transition()
     .duration(5000)

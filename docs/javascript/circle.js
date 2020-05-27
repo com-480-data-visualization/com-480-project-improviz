@@ -35,7 +35,7 @@ d3.csv("data/Crimes_by_dayofyear.csv", function(data) {
     .attr("dy", "1.5em")
     .attr("font-size", "15px")
     .style("text-anchor", "middle")
-    .text("crimes one day of the year from 2001 to now");
+    .text("Crimes one day of the year from 2001 to now");
 
   // X scale
   var x = d3.scaleBand()

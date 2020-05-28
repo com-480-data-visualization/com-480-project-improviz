@@ -1,33 +1,4 @@
-// create 2 data_set
-var data1 = [{
-    group: "ARSON",
-    value: 4
-  },
-  {
-    group: "B",
-    value: 16
-  },
-  {
-    group: "C",
-    value: 8
-  }
-];
-
-var data2 = [{
-    group: "A",
-    value: 7
-  },
-  {
-    group: "B",
-    value: 1
-  },
-  {
-    group: "C",
-    value: 20
-  },
-];
-
-// set the dimensions and margins of the graph
+// set the dimensions and margins of the graph at the top
 var margin = {
     top: 0,
     right: 0,
@@ -69,8 +40,21 @@ var textBoardBar = svg_board.append("text")
   .style("text-anchor", "middle")
   .text("");
 
+var dataset_board;
+d3.csv("data/Crimes_board.csv", function(error, datapt) {
+  // If error is not null, something went wrong.
+  if (error) {
+    console.log(error); //Log the error.
+  } else {
+    dataset_board = datapt; // Give the data a global scope
+    //Call some other functions that generate the visualization
+  }
+});
+
+//variables keeping the categorie we want to observe
 var savedDataCateg;
 var savedThisCateg;
+
 // A function that create / update the plot for a given variable:
 function update(data, value_nb) {
 
@@ -85,7 +69,15 @@ function update(data, value_nb) {
       textBoardBar.text(savedDataCateg.group + " " + savedDataCateg[value_nb])
     }
 
-    return Math.max(parseInt(d[2002 + "-" + place_column]), parseInt(d[2003 + "-" + place_column]), parseInt(d[2004 + "-" + place_column]), parseInt(d[2005 + "-" + place_column]), parseInt(d[2006 + "-" + place_column]), parseInt(d[2007 + "-" + place_column]), parseInt(d[2008 + "-" + place_column]), parseInt(d[2009 + "-" + place_column]))
+    //the maximum is between those years
+    return Math.max(parseInt(d[2002 + "-" + place_column]),
+      parseInt(d[2003 + "-" + place_column]),
+      parseInt(d[2004 + "-" + place_column]),
+      parseInt(d[2005 + "-" + place_column]),
+      parseInt(d[2006 + "-" + place_column]),
+      parseInt(d[2007 + "-" + place_column]),
+      parseInt(d[2008 + "-" + place_column]),
+      parseInt(d[2009 + "-" + place_column]))
   })]);
   yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
@@ -93,6 +85,7 @@ function update(data, value_nb) {
   var u_stream = svg_board.selectAll("rect")
     .data(data)
     .attr("class", "bar_board")
+    //change text below bar visualization and color
     .on("mouseover", function(d) {
       savedDataCateg = d
       savedThisCateg = this
@@ -103,9 +96,9 @@ function update(data, value_nb) {
 
   u_stream
     .enter()
-    .append("rect") // Add a new rect for each new elements
-    .merge(u_stream) // get the already existing elements as well
-    .transition() // and apply changes to all of them
+    .append("rect")
+    .merge(u_stream)
+    .transition()
     .duration(400)
     .attr("x", function(d) {
       return x(d.group);
@@ -114,77 +107,30 @@ function update(data, value_nb) {
       return 0;
     })
     .attr("width", x.bandwidth())
+    .attr("fill", "#282A2D")
     .attr("height", function(d) {
       d3.select(savedThisCateg).attr('fill', "#69779B")
       return y(d[value_nb]);
     })
-    .attr("fill", "#282A2D")
 
-
-  // If less group in the new dataset, I delete the ones not in use anymore
-  u_stream
-    .exit()
-    .remove()
   d3.select(savedThisCateg).attr('fill', "#69779B")
 }
-
-
-var dataset_board;
-d3.csv("data/Crimes_board.csv", function(error, datapt) {
-  // If error is not null, something went wrong.
-  if (error) {
-    console.log(error); //Log the error.
-  } else {
-    dataset_board = datapt; // Give the data a global scope
-    //Call some other functions that generate the visualization
-  }
-});
-
-var dataset_board_down_left;
-d3.csv("data/Socio_board_left.csv", function(error, datapt) {
-  // If error is not null, something went wrong.
-  if (error) {
-    console.log(error); //Log the error.
-  } else {
-    dataset_board_down_left = datapt; // Give the data a global scope
-    //Call some other functions that generate the visualization
-  }
-});
-
-var dataset_district_name;
-d3.csv("data/district_name.csv", function(error, datapt) {
-  // If error is not null, something went wrong.
-  if (error) {
-    console.log(error); //Log the error.
-  } else {
-    dataset_district_name = datapt; // Give the data a global scope
-    //Call some other functions that generate the visualization
-  }
-});
-
-var textBottomCat1;
-var textBottomCat2;
-var textBottomCat3;
-var textBottomCat4;
-var textBottomCat5;
 
 //==========================================================================
 //                    Select data
 //==========================================================================
 
-
 var width = window.innerHeight * 0.54
 var height = window.innerHeight * 0.54
 var margin = 25
 
-// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-
+// The radius of the pieplot is half the width or half the height
 var radius_place = Math.min(width, height) / 2 - margin
 var radius_blank_l = Math.min(width - 80, height - 80) / 2 - margin
 var radius = Math.min(width - 100, height - 100) / 2 - margin
 var radius_blank = Math.min(width - 180, height - 180) / 2 - margin
 
-// append the svg object to the div called 'my_dataviz'
+// append the svg object to the div
 var svg_board_select = d3.select("#the_board_select")
   .append("svg")
   .attr("width", width)
@@ -192,7 +138,7 @@ var svg_board_select = d3.select("#the_board_select")
   .append("g")
   .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-// Create dummy data
+// dataset
 var data = {
   2002: 1,
   2003: 1,
@@ -305,6 +251,26 @@ var data_place = {
   76.0: 1,
   77.0: 1
 }
+var dataset_board_down;
+var dataset_district_name;
+
+d3.csv("data/Socio_board_left.csv", function(error, datapt) {
+  // If error is not null, something went wrong.
+  if (error) {
+    console.log(error);
+  } else {
+    dataset_board_down = datapt;
+  }
+});
+
+d3.csv("data/district_name.csv", function(error, datapt) {
+  // If error is not null, something went wrong.
+  if (error) {
+    console.log(error);
+  } else {
+    dataset_district_name = datapt;
+  }
+});
 
 // set the color scale
 var color_dark = d3.scaleOrdinal()
@@ -319,18 +285,29 @@ var color_light = d3.scaleOrdinal()
 // Compute the position of each group on the pie:
 var pie = d3.pie()
   .value(function(d) {
-    return 15; //nb pie
+    return 1;
   })
+
 var data_ready = pie(d3.entries(data))
 var data_ready_place = pie(d3.entries(data_place))
 var data_ready_blank = pie(d3.entries(data_blank))
 
-var date_column = "2002"
-var place_column = "19.0"
-var name_column
+// Define values for text
+var date_column = "2002";
+var place_column = "1.0";
+var name_column;
 
+//saved data
 var saved_d_circle_categ_board;
 var saved_this_circle_categ_board;
+var saved_d_circle_date_board;
+var saved_this_circle_date_board;
+
+var textBottomCat1;
+var textBottomCat2;
+var textBottomCat3;
+var textBottomCat4;
+var textBottomCat5;
 
 svg_board_select
   .selectAll('whatever')
@@ -349,64 +326,82 @@ svg_board_select
   .style("stroke-width", "2px")
   .style("opacity", 1)
   .on("click", function(d) {
+    //change variable of all texts
     saved_d_circle_categ_board = d
     saved_this_circle_categ_board = this
     place_column = d.data.key + ".0"
     name_column = date_column + "-" + place_column
-    update(dataset_board, name_column)
-    update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
     textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
     textInCercle2.text(date_column)
+
+    //update data visu up and down
+    update(dataset_board, name_column)
+    update_down(dataset_board_down, place_column.substring(0, place_column.length - 2))
+
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
     d3.select(this).attr('fill', "#69779B")
-    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+
+    //update texts
+    textBottomCat1.text(dataset_board_down[0][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat2.text(dataset_board_down[1][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat3.text(dataset_board_down[2][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat4.text(dataset_board_down[3][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat5.text(dataset_board_down[4][place_column.substring(0, place_column.length - 2)] + "%")
   })
   .on("mouseover", function(d) {
+    //change variable of all texts
     place_column = d.data.key + ".0"
     name_column = date_column + "-" + place_column
-    update(dataset_board, name_column)
-    update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
     textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
     textInCercle2.text(date_column)
+
+    //update data visu up and down
+    update(dataset_board, name_column)
+    update_down(dataset_board_down, place_column.substring(0, place_column.length - 2))
+
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
     d3.select(this).attr('fill', "#69779B")
-    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
-    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+
+    //update texts
+    textBottomCat1.text(dataset_board_down[0][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat2.text(dataset_board_down[1][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat3.text(dataset_board_down[2][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat4.text(dataset_board_down[3][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat5.text(dataset_board_down[4][place_column.substring(0, place_column.length - 2)] + "%")
   })
   .on("mouseleave", function(d) {
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))
     })
     if (saved_d_circle_categ_board != null) {
+      //change variable of all texts
       place_column = saved_d_circle_categ_board.data.key + ".0"
       name_column = date_column + "-" + place_column
-      update(dataset_board, name_column)
-      update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
       textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
       textInCercle2.text(date_column)
+
+      //update data visu up and down
+      update(dataset_board, name_column)
+      update_down(dataset_board_down, place_column.substring(0, place_column.length - 2))
+
       d3.select(saved_this_circle_categ_board).attr('fill', "#69779B")
-      textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
-      textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
-      textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
-      textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
-      textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+
+      //update texts
+      textBottomCat1.text(dataset_board_down[0][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat2.text(dataset_board_down[1][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat3.text(dataset_board_down[2][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat4.text(dataset_board_down[3][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat5.text(dataset_board_down[4][place_column.substring(0, place_column.length - 2)] + "%")
     } else {
       d3.select(this).attr('fill', "#69779B")
     }
-
   })
 
+//add numbers in cercle
 svg_board_select
   .selectAll('whatever')
   .data(data_ready_place)
@@ -429,7 +424,7 @@ svg_board_select
   .style("font-size", 17)
   .attr("fill", "white")
 
-
+//add blank between two circles
 svg_board_select
   .selectAll('whatever')
   .data(data_ready_blank)
@@ -445,9 +440,6 @@ svg_board_select
   .attr("stroke", "black")
   .style("stroke-width", "2px")
   .style("opacity", 1)
-
-var saved_d_circle_date_board;
-var saved_this_circle_date_board;
 
 svg_board_select
   .selectAll('whatever')
@@ -466,22 +458,28 @@ svg_board_select
   .style("stroke-width", "2px")
   .style("opacity", 1)
   .on("click", function(d) {
+    //change variable of all texts
     saved_d_circle_date_board = d
     saved_this_circle_date_board = this
     date_column = d.data.key
     name_column = date_column + "-" + place_column
-    update(dataset_board, name_column)
     textInCercle2.text(date_column)
+
+    //update data visu up
+    update(dataset_board, name_column)
     d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_light(d.data.key))
     })
     d3.select(this).attr('fill', "#69779B")
   })
   .on("mouseover", function(d) {
+    //change variable of all texts
     date_column = d.data.key
     name_column = date_column + "-" + place_column
-    update(dataset_board, name_column)
     textInCercle2.text(date_column)
+
+    //update data visu up
+    update(dataset_board, name_column)
     d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_light(d.data.key))
     })
@@ -494,10 +492,13 @@ svg_board_select
     })
 
     if (saved_d_circle_date_board != null) {
+      //change variable of all texts
       date_column = saved_d_circle_date_board.data.key
       name_column = date_column + "-" + place_column
-      update(dataset_board, name_column)
       textInCercle2.text(date_column)
+
+      //update data visu up
+      update(dataset_board, name_column)
       d3.select(saved_this_circle_date_board).attr('fill', "#69779B")
     } else {
       d3.select(this).attr('fill', "#69779B")
@@ -543,88 +544,87 @@ var textInCercle2 = svg_board_select.append("text")
 //========================================================================================
 
 // set the dimensions and margins of the graph
-var margin_board_bar_down_left = {
+var margin_board_bar_down = {
     top: 0,
     right: 0,
     bottom: 0,
     left: -10
   },
-  width_board_bar_down_left = window.innerWidth / 1.3 - margin_board_bar_down_left.left - margin_board_bar_down_left.right,
-  height_board_bar_down_left = window.innerHeight * 0.17 - margin_board_bar_down_left.top - margin_board_bar_down_left.bottom;
+  width_board_bar_down = window.innerWidth / 1.3 - margin_board_bar_down.left - margin_board_bar_down.right,
+  height_board_bar_down = window.innerHeight * 0.17 - margin_board_bar_down.top - margin_board_bar_down.bottom;
 
-d3.select("#the_board_bar_down_left").style("height", (window.innerHeight * 0.17 - 1) + "px")
+// Define height
+d3.select("#the_board_bar_down").style("height", (window.innerHeight * 0.17 - 1) + "px")
 
-// append the svg_board object to the body of the page
-var svg_board_bar_down_left = d3.select("#the_board_bar_down_left")
+// append the svg_board object
+var svg_board_bar_down = d3.select("#the_board_bar_down")
   .append("svg")
-  .attr("width", width_board_bar_down_left + margin_board_bar_down_left.left + margin_board_bar_down_left.right)
-  .attr("height", height_board_bar_down_left + margin_board_bar_down_left.top + margin_board_bar_down_left.bottom)
+  .attr("width", width_board_bar_down + margin_board_bar_down.left + margin_board_bar_down.right)
+  .attr("height", height_board_bar_down + margin_board_bar_down.top + margin_board_bar_down.bottom)
   .append("g")
   .attr("transform",
-    "translate(" + margin_board_bar_down_left.left + "," + margin_board_bar_down_left.top + ")");
+    "translate(" + margin_board_bar_down.left + "," + margin_board_bar_down.top + ")");
 
 // Initialize the X axis
-var x_board_bar_down_left = d3.scaleBand()
-  .range([0, width_board_bar_down_left])
+var x_board_bar_down = d3.scaleBand()
+  .range([0, width_board_bar_down])
   .padding(0.1);
-var xAxis_board_bar_down_left = svg_board_bar_down_left.append("g")
-  .attr("transform", "translate(0," + height_board_bar_down_left + ")")
+var xAxis_board_bar_down = svg_board_bar_down.append("g")
+  .attr("transform", "translate(0," + height_board_bar_down + ")")
 
 // Initialize the Y axis
-var y_board_bar_down_left = d3.scaleLinear()
-  .range([height_board_bar_down_left, 0]);
-var yAxis_board_bar_down_left = svg_board_bar_down_left.append("g")
-  .attr("class", "myYaxis_bar_down_left")
+var y_board_bar_down = d3.scaleLinear()
+  .range([height_board_bar_down, 0]);
+var yAxis_board_bar_down = svg_board_bar_down.append("g")
+  .attr("class", "myYaxis_bar_down")
 
 
-// A function that create / update the plot for a given variable:
-function update_down_left(data, value_nb) {
+// update the plot for a given category
+function update_down(data, value_nb) {
 
   // Update the X axis
-  x_board_bar_down_left.domain(data.map(function(d) {
+  x_board_bar_down.domain(data.map(function(d) {
     return d.group;
   }))
-  //xAxis.call(d3.axisBottom(x))
 
   // Update the Y axis
-  y_board_bar_down_left.domain([0, d3.max(data, function(d) {
-    return 57;
+  y_board_bar_down.domain([0, d3.max(data, function(d) {
+    return 57; //the max value
   })]);
-  yAxis_board_bar_down_left.transition().duration(1000).call(d3.axisLeft(y_board_bar_down_left));
+  yAxis_board_bar_down.transition().duration(1000).call(d3.axisLeft(y_board_bar_down));
 
   // Create the u variable
-  var u_stream_bar_down_left = svg_board_bar_down_left.selectAll("rect")
+  var u_stream_bar_down = svg_board_bar_down.selectAll("rect")
     .data(data)
-    .attr("class", "board_bar_down_left")
+    .attr("class", "board_bar_down")
 
   // Draw the axis
-  svg_board_bar_down_left
+  svg_board_bar_down
     .append("g")
-    .attr("transform", "translate(0,10)") // This controls the vertical position of the Axis
-    .call(d3.axisBottom(x_board_bar_down_left));
+    .attr("transform", "translate(0,10)")
+    .call(d3.axisBottom(x_board_bar_down));
 
-  u_stream_bar_down_left
+  u_stream_bar_down
     .enter()
-    .append("rect") // Add a new rect for each new elements
-    .merge(u_stream_bar_down_left) // get the already existing elements as well
-    .transition() // and apply changes to all of them
+    .append("rect")
+    .merge(u_stream_bar_down)
+    .transition()
     .duration(400)
     .attr("x", function(d) {
-      return x_board_bar_down_left(d.group);
+      return x_board_bar_down(d.group);
     })
     .attr("y", function(d) {
-      return y_board_bar_down_left(d[value_nb]);
+      return y_board_bar_down(d[value_nb]);
     })
-    .attr("width", x_board_bar_down_left.bandwidth())
+    .attr("width", x_board_bar_down.bandwidth())
     .attr("height", function(d) {
-      return height_board_bar_down_left - y_board_bar_down_left(d[value_nb]);
+      return height_board_bar_down - y_board_bar_down(d[value_nb]);
     })
     .attr("fill", "#282A2D")
 
-
-  d3.selectAll("#textBottomCat").remove();
-  textBottomCat1 = svg_board_bar_down_left.append("text")
-    .attr("x", (width_board_bar_down_left / 5) * 0.5)
+  d3.selectAll("#textBottomCat").remove(); //remove old texts
+  textBottomCat1 = svg_board_bar_down.append("text")
+    .attr("x", (width_board_bar_down / 5) * 0.5)
     .attr("y", 10)
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
@@ -633,8 +633,8 @@ function update_down_left(data, value_nb) {
     .style("text-anchor", "middle")
     .text("");
 
-  textBottomCat2 = svg_board_bar_down_left.append("text")
-    .attr("x", (width_board_bar_down_left / 5) * 1.5)
+  textBottomCat2 = svg_board_bar_down.append("text")
+    .attr("x", (width_board_bar_down / 5) * 1.5)
     .attr("y", 10)
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
@@ -643,8 +643,8 @@ function update_down_left(data, value_nb) {
     .style("text-anchor", "middle")
     .text("");
 
-  textBottomCat3 = svg_board_bar_down_left.append("text")
-    .attr("x", (width_board_bar_down_left / 5) * 2.5)
+  textBottomCat3 = svg_board_bar_down.append("text")
+    .attr("x", (width_board_bar_down / 5) * 2.5)
     .attr("y", 10)
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
@@ -653,8 +653,8 @@ function update_down_left(data, value_nb) {
     .style("text-anchor", "middle")
     .text("");
 
-  textBottomCat4 = svg_board_bar_down_left.append("text")
-    .attr("x", (width_board_bar_down_left / 5) * 3.5)
+  textBottomCat4 = svg_board_bar_down.append("text")
+    .attr("x", (width_board_bar_down / 5) * 3.5)
     .attr("y", 10)
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
@@ -663,8 +663,8 @@ function update_down_left(data, value_nb) {
     .style("text-anchor", "middle")
     .text("");
 
-  textBottomCat5 = svg_board_bar_down_left.append("text")
-    .attr("x", (width_board_bar_down_left / 5) * 4.5)
+  textBottomCat5 = svg_board_bar_down.append("text")
+    .attr("x", (width_board_bar_down / 5) * 4.5)
     .attr("y", 10)
     .attr("dy", "2.5em")
     .attr("id", "textBottomCat")
@@ -672,8 +672,5 @@ function update_down_left(data, value_nb) {
     .style('fill', '#69779B')
     .style("text-anchor", "middle")
     .text("");
-  // If less group in the new dataset, I delete the ones not in use anymore
-  u_stream_bar_down_left
-    .exit()
-    .remove()
+
 }

@@ -23,7 +23,7 @@ var months_dict = {
   11: 'December'
 }
 
-// append the svg object to the body of the page
+// append the svg object
 var svg2 = d3.select('#streamgraph')
   .append('svg')
   .attr('width', width_streamgraph + margin_stream.left + margin_stream.right)
@@ -33,14 +33,13 @@ var svg2 = d3.select('#streamgraph')
     'translate(' + margin_stream.left + ',' + margin_stream.top + ')')
 
 // Parse the Data
-d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
+d3.csv('data/Crimes_by_day_by_type.csv', function(data) {
   // List of groups = header of the csv files
   var keys = data.columns.slice(1)
-  console.log(keys)
 
   // Add X axis
   var x_stream = d3.scaleLinear()
-    .domain(d3.extent(data, function (d) {
+    .domain(d3.extent(data, function(d) {
       return d.date
     }))
     .range([0, 650])
@@ -51,7 +50,7 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .select('.domain').remove()
 
   svg2.selectAll('.tick line').attr('stroke', '#f2f2f2')
-  svg2.selectAll('.tick text').attr('opacity', 0)
+  svg2.selectAll('.tick text').attr('opacity', 0) //we only want line
 
   // Add the years under the plot:
   place_years(svg2, 35, height_streamgraph - 30, width_streamgraph)
@@ -66,7 +65,7 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .domain(keys)
     .range(['#B6F5F6', '#45A4B8', '#06547A', '#3E8B7E', '#6EDDA2'])
 
-  // stack the data?
+  // stack the data
   var stackedData = d3.stack()
     .offset(d3.stackOffsetSilhouette)
     .keys(keys)(data)
@@ -81,7 +80,7 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .style('font-size', 17)
 
   // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function (d) {
+  var mouseover = function(d) {
     Tooltip.style('opacity', 1)
     d3.selectAll('.area_streamgraph').style('opacity', 0.2)
     d3.select(this)
@@ -89,7 +88,8 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
       .style('opacity', 1)
       .style('fill', '#69779B')
   }
-  var mousemove = function (d, i) {
+
+  var mousemove = function(d, i) {
     mouse_pos = d3.mouse(this)
     x_pos = Math.round(mouse_pos[0] / (width_streamgraph / d.length))
     y_val = Math.abs(d[x_pos][1] - d[x_pos][0])
@@ -107,24 +107,26 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     str = y_val.toString() + ' ' + grp.toString() + ' recorded during the month ' + month_str + ' ' + year_str
     Tooltip.text(str)
   }
-  var mouseleave = function (d) {
+
+  var mouseleave = function(d) {
     Tooltip.style('opacity', 0)
-    d3.selectAll('.area_streamgraph').style('opacity', 0.5).style('stroke', 'none').style('fill', function (d) {
+    d3.selectAll('.area_streamgraph').style('opacity', 0.5).style('stroke', 'none').style('fill', function(d) {
       return color_streamgraph(d.key)
     })
   }
 
   // Area generator
   var area = d3.area()
-    .x(function (d) {
+    .x(function(d) {
       return x_stream(d.data.date)
     })
-    .y0(function (d) {
+    .y0(function(d) {
       return y(d[0])
     })
-    .y1(function (d) {
+    .y1(function(d) {
       return y(d[1])
     })
+
   // Show the areas
   svg2
     .selectAll('mylayers')
@@ -132,7 +134,7 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .enter()
     .append('path')
     .attr('class', 'area_streamgraph')
-    .style('fill', function (d) {
+    .style('fill', function(d) {
       return color_streamgraph(d.key)
     })
     .style('opacity', 0.5)
@@ -142,7 +144,7 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .on('mouseleave', mouseleave)
 })
 
-function place_years (svg, x, y, max_width) {
+function place_years(svg, x, y, max_width) {
   var step_size = max_width / 19
   for (var i = 0; i < 19; i++) {
     var year = 2001 + i

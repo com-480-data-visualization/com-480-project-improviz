@@ -14,7 +14,7 @@ var interval_sdatemap
 var selectDate = document.getElementById('dateSelect')
 var selectType = document.getElementById('typeSelect')
 var selectSpecialDate = document.getElementById('sdateSelect')
-var currentYear = document.getElementById('cyear')
+var currentYm = document.getElementById('current-ym')
 
 //bounds
 var bounds = new L.LatLngBounds(new L.LatLng(42.268308, -88.539492), new L.LatLng(41.453662, -86.903606))
@@ -66,6 +66,7 @@ function create_map () {
 }
 
 function clear_map () {
+  currentYm.innerHTML = '';
   current_layers.forEach((layer) => {
     mymap.removeLayer(layer)
   })
@@ -92,6 +93,7 @@ function toggleCommAreas(data) {
 }
 
 function display_one_heatmap (data) {
+  currentYm.innerHTML = month_heatmap+'/'+year_heatmap;
   if (current_heatmap != null) {
     mymap.removeLayer(current_heatmap)
   }
@@ -134,7 +136,7 @@ function display_heatmap (data) {
 function animate_heatmaps (filepath) {
   d3.json(filepath, function (data) {
     stopLoadOverlay()
-    interval_heatmap = setInterval(display_heatmap, 10, data)
+    interval_heatmap = setInterval(display_heatmap, 500, data)
   })
 }
 
@@ -268,6 +270,7 @@ function display_sdate (data, sdate) {
     enableMapButtons()
     current_layers.push(current_sdatemap)
   } else {
+    currentYm.innerHTML = year_sdatemap;
     if (current_sdatemap != null) {
       mymap.removeLayer(current_sdatemap)
     }

@@ -44,7 +44,7 @@
 
 body {
   margin: 0px;
-  background-color: #282A2D;
+  background-color: #292A2D;
   font-family: Bitstream Vera Sans Mono;
 }
 
@@ -68,7 +68,7 @@ body {
   text-align: center;
   font-size: 40px;
   color: #FAFAFA;
-  background-color: #282a2d;
+  background-color: #292A2D;
 
 }
 
@@ -86,7 +86,7 @@ body {
 .text_white{
   padding-top: 20px;
   color: #F4F4F4;
-  background: #282a2d;
+  background: #292A2D;
   text-align: center;
   font-size: 15px;
   padding-left: 20vw;
@@ -97,7 +97,7 @@ body {
 .white_map{
   padding-top: 20px;
   color: #f4f4f4;
-  background: #282a2d;
+  background: #292A2D;
   padding-bottom: 1vh;
 }
 
@@ -131,7 +131,7 @@ body {
   background-attachment: scroll;
   height: 900px;
   min-height: 110vh;
-  background-color: #282A2D;
+  background-color: #292A2D;
 }
 
 #part1{
@@ -145,7 +145,7 @@ body {
   /* margin-top: 50px;
   margin-bottom: 50;
   padding-bottom: 30px; */
-  background-color: #282A2D;
+  background-color: #292A2D;
   text-align: center;
   align-content: center;
   height: 100vh;

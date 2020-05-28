@@ -41,27 +41,29 @@
 
     <script src="javascript/circle.js"></script>
 
-    <div class="text_grey circle">
-      We see that the average number of crimes are generally constant over the observed years. But there are some exceptions! <br>
-      The most obvious one is the big peaks of crimes the first of January. The parties the night before the new year's eve must have something to do with it.
-      Something surely has caught your attention as well: there are peaks of crimes for every first of the month! We have no clear explanation about them, only some suppositions.
-      The first one is the naive one: the first of each month has an impact on crime, maybe due to people having received their salary recently or thinking the beginning of a new month is the occasion to do crazy stuff. But surely, even if the
-      dataset is provided by a big city, we believe that those peaks comes from
-      errors in the entries and that if there is no precise date for a crime, the value is defaulted to the first of the month. <br>
-      Finally, we can see that the day with the lowest crimes rate is christmas, which could be explaind by the fact that the majority of the population of the United States is christian.
-    </div>
 
+  </div>
+  <div class="text_grey circle">
+    We see that the average number of crimes are generally constant over the observed years. But there are some exceptions! <br>
+    The most obvious one is the big peaks of crimes the first of January. The parties the night before the new year's eve must have something to do with it.
+    Something surely has caught your attention as well: there are peaks of crimes for every first of the month! We have no clear explanation about them, only some suppositions.
+    The first one is the naive one: the first of each month has an impact on crime, maybe due to people having received their salary recently or thinking the beginning of a new month is the occasion to do crazy stuff. But surely, even if the
+    dataset is provided by a big city, we believe that those peaks comes from
+    errors in the entries and that if there is no precise date for a crime, the value is defaulted to the first of the month. <br>
+    Finally, we can see that the day with the lowest crimes rate is christmas, which could be explaind by the fact that the majority of the population of the United States is christian.
   </div>
 
   <!-- Stream graph part 1 -->
   <div id="part1">
-    <div class="text_grey white_map" id="part1_text">
-      On this streamchart each stream is a category of crimes.
-      This second display presents the proportion of crimes by their type. This shows that the majority of crimes are part of the less severe type, with Theft, Narcotics, Criminal Damage and Battery being the most represented. And it is reassuring to see that crimes such as Homicide, Criminal Sexual Assaults and Kidnapping are really thin lines, making them a minority of crimes which have been registered by the Chicago police. More a bit more common are the Burglary, Robbery and Motor vehicle theft which we could have expected to be even higher when only seeing the total number of crimes registered.
-This gives a nice overall idea of what can be expected when using the filter mode in the map section
-    </div>
     <div id="streamgraph" style="align-content: center; margin: auto;"></div>
     <script src="javascript/streamgraph.js"></script>
+    <div class="text_grey white_map" id="part1_text">
+      On this streamchart each stream is a category of crimes.
+      This second display presents the proportion of crimes by their type. This shows that the majority of crimes are part of the less severe type, with Theft, Narcotics, Criminal Damage and Battery being the most represented. And it is reassuring to
+      see that crimes such as Homicide, Criminal Sexual Assaults and Kidnapping are really thin lines, making them a minority of crimes which have been registered by the Chicago police. More a bit more common are the Burglary, Robbery and Motor
+      vehicle theft which we could have expected to be even higher when only seeing the total number of crimes registered.
+      This gives a nice overall idea of what can be expected when using the filter mode in the map section
+    </div>
   </div>
 
 
@@ -74,39 +76,39 @@ This gives a nice overall idea of what can be expected when using the filter mod
     <div id="mapbuttons">
       <div id="police">
         <div class="title-map">
-		Do the police stations locations affect crime density ?
+          Do the police stations locations affect crime density ?
         </div>
-          <div class="centered1">
-           <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
-          </div>
-	</div>
+        <div class="centered1">
+          <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
+        </div>
+      </div>
 
-	    <div id="filter_mode">
-	      <div class="title-map">
-		      Display the number of a crime type for a chosen date
-	      </div>
-	      <div class="filter_button">
-	        <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Filter</button>
-	      </div>
-		    <div class="filter_options">
-		      <datalist id="dateSelect"></datalist>
-		      <input id="date-selector" type="date" list="dataSelect" title="date-selector" class="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
-		      <select id="typeSelect" class="selector"></select>
-		    </div>
-	    </div>
-	    <div id="sdate_mode">
-	      <div class="title-map">
-		      Show the evolution of crime density on holidays
-	      </div>
+      <div id="filter_mode">
+        <div class="title-map">
+          Display the number of a crime type for a chosen date
+        </div>
+        <div class="filter_button">
+          <button class="btn btn-filter" id="show_areas_button" onclick="show_areas()">Filter</button>
+        </div>
+        <div class="filter_options">
+          <datalist id="dateSelect"></datalist>
+          <input id="date-selector" type="date" list="dataSelect" title="date-selector" class="date-selector" placeholder="2001-01-01" min="2001-01-01" max="2019-12-31" value="2001-01-01">
+          <select id="typeSelect" class="selector"></select>
+        </div>
+      </div>
+      <div id="sdate_mode">
+        <div class="title-map">
+          Show the evolution of crime density on holidays
+        </div>
         <div class="sdate_options">
           <select id="sdateSelect" class="selector"></select>
         </div>
-	      <div class="sdate_button">
-	        <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
-	      </div>
-	    </div>
-	    <div id="aff_houses">
-	      <!-- <div class="aff_h">
+        <div class="sdate_button">
+          <button class="btn btn-sdate" id="show_sdates_button" onclick="show_sdates()">Animate</button>
+        </div>
+      </div>
+      <div id="aff_houses">
+        <!-- <div class="aff_h">
 		      <input type="checkbox" id="checkbox_house" value="2" onclick="displayHouses(this)">
 		        Toggle affordable houses marker<br>
 	      </div> -->

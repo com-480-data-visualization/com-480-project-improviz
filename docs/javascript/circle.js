@@ -5,9 +5,9 @@ var margin = {
     bottom: 100,
     left: 50
   },
-  width = 600,
-  height = 560,
-  innerRadius = 240,
+  width = window.innerHeight * 0.6,
+  height = window.innerHeight * 0.6,
+  innerRadius = (height - 80) / 2,
   outerRadius = Math.min(width, height) / 2; // the outerRadius goes from the middle of the SVG area to the border
 
 // append the svg object to the body of the page
@@ -82,21 +82,20 @@ d3.csv("data/crimes_mean.csv", function(data) {
       var pad_month = "";
       var pad_day = "";
 
-      if (d.Month < 10){
+      if (d.Month < 10) {
         pad_month = "0"
       }
-      if (d.Day < 10){
+      if (d.Day < 10) {
         pad_day = "0"
       }
       return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
-    .on("mouseout", function(d) {
-    })
+    .on("mouseout", function(d) {})
     .attr("id", "BarCercle")
     .attr("d", d3.arc() // imagine your doing a part of a donut plot
       .innerRadius(innerRadius)
       .outerRadius(function(d) {
-        return y((d['Crimes']-500)**exp);
+        return y((d['Crimes'] - 500) ** exp);
       })
       .startAngle(function(d) {
         return x(d.Date);
@@ -115,10 +114,10 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .on('start', function(d) {
       var pad_month = "";
       var pad_day = "";
-      if (d.Month < 10){
+      if (d.Month < 10) {
         pad_month = "0"
       }
-      if (d.Day < 10){
+      if (d.Day < 10) {
         pad_day = "0"
       }
       textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
@@ -143,7 +142,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
         return ybis(0)
       })
       .outerRadius(function(d) {
-        return ybis((d['Crimes']-500));
+        return ybis((d['Crimes'] - 500));
       })
       .startAngle(function(d) {
         return x(d.Date);

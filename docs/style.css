@@ -37,8 +37,8 @@ body {
   background: #F4F4F4;
   text-align: center;
   font-size: 15px;
-  padding-left: 30vw;
-  padding-right: 30vw;
+  padding-left: 20vw;
+  padding-right: 20vw;
 }
 
 .circle{
@@ -76,7 +76,7 @@ body {
 #part0{
   background-image: url('img/chicago.jpg');
   background-size: cover;
-  height: 110vh;
+  min-height: 110vh;
   background-color: #282A2D;
 }
 
@@ -85,6 +85,7 @@ body {
   background-color: #282A2D;
   color: #f4f4f4;
   text-align: center;
+  padding-bottom: 90px;
 }
 #part2{
   /* margin-top: 50px;

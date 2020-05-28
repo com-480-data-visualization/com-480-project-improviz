@@ -59,6 +59,7 @@ function create_map () {
     maxZoom: 22,
     minZoom: 10
   })
+  community_areas_delimiter = L.geoJSON(areas, {style: ca_style}).on('mouseover', function(e) {var popup = L.popup().setLatLng(e.latlng).setContent(e.sourceTarget.feature.properties.community).openOn(mymap);});
 
   // set the map image
   mymap.addLayer(theme)
@@ -71,6 +72,25 @@ function clear_map () {
 }
 
 // -------------- DISPLAY HEATMAPS POLICE STATIONS ---------------------
+
+    function ca_style (feature) {
+      return {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0,
+        fillColor: 'white'
+      }
+    }
+
+function toggleCommAreas(data) {
+  if (data.checked == true) {
+    current_layers.push(community_areas_delimiter.addTo(mymap));
+  } else {
+    mymap.removeLayer(community_areas_delimiter);
+  }
+}
+
 function display_one_heatmap (data) {
   if (current_heatmap != null) {
     mymap.removeLayer(current_heatmap)

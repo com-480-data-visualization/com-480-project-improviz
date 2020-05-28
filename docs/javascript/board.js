@@ -175,7 +175,7 @@ var textBottomCat5;
 
 var width = window.innerHeight * 0.54
 var height = window.innerHeight * 0.54
-var margin = 5
+var margin = 25
 
 // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 
@@ -315,6 +315,7 @@ var color_light = d3.scaleOrdinal()
   .domain(data)
   .range(["#DBDBDB", '#CFCFCF', '#C7C7C7', '#CFCFCF'])
 
+
 // Compute the position of each group on the pie:
 var pie = d3.pie()
   .value(function(d) {
@@ -361,6 +362,29 @@ svg_board_select
     textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
     textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
   })
+
+svg_board_select
+  .selectAll('whatever')
+  .data(data_ready_place)
+  .enter()
+  .append('text')
+  .text(function(d) {
+    if (d.data.key % 10 == 0) {
+      return d.data.key;
+    } else {
+      return "";
+    }
+
+  })
+  .attr("transform", function(d) {
+    return "translate(" + d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius_place * 2 - 35).centroid(d) + ")";
+  })
+  .style("text-anchor", "middle")
+  .style("font-size", 17)
+  .attr("fill", "white")
+
 
 svg_board_select
   .selectAll('whatever')

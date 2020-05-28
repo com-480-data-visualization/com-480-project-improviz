@@ -329,6 +329,9 @@ var date_column = "2002"
 var place_column = "19.0"
 var name_column
 
+var saved_d_circle_categ_board;
+var saved_this_circle_categ_board;
+
 svg_board_select
   .selectAll('whatever')
   .data(data_ready_place)
@@ -345,6 +348,25 @@ svg_board_select
   .attr("stroke", "black")
   .style("stroke-width", "2px")
   .style("opacity", 1)
+  .on("click", function(d) {
+    saved_d_circle_categ_board = d
+    saved_this_circle_categ_board = this
+    place_column = d.data.key + ".0"
+    name_column = date_column + "-" + place_column
+    update(dataset_board, name_column)
+    update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
+    textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
+    textInCercle2.text(date_column)
+    d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
+      return (color_dark(d.data.key))
+    })
+    d3.select(this).attr('fill', "#69779B")
+    textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
+    textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+  })
   .on("mouseover", function(d) {
     place_column = d.data.key + ".0"
     name_column = date_column + "-" + place_column
@@ -361,6 +383,28 @@ svg_board_select
     textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
     textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
     textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+  })
+  .on("mouseleave", function(d) {
+    d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
+      return (color_dark(d.data.key))
+    })
+    if (saved_d_circle_categ_board != null) {
+      place_column = saved_d_circle_categ_board.data.key + ".0"
+      name_column = date_column + "-" + place_column
+      update(dataset_board, name_column)
+      update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
+      textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
+      textInCercle2.text(date_column)
+      d3.select(saved_this_circle_categ_board).attr('fill', "#69779B")
+      textBottomCat1.text(dataset_board_down_left[0][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat2.text(dataset_board_down_left[1][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat3.text(dataset_board_down_left[2][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat4.text(dataset_board_down_left[3][place_column.substring(0, place_column.length - 2)] + "%")
+      textBottomCat5.text(dataset_board_down_left[4][place_column.substring(0, place_column.length - 2)] + "%")
+    } else {
+      d3.select(this).attr('fill', "#69779B")
+    }
+
   })
 
 svg_board_select
@@ -402,6 +446,9 @@ svg_board_select
   .style("stroke-width", "2px")
   .style("opacity", 1)
 
+var saved_d_circle_date_board;
+var saved_this_circle_date_board;
+
 svg_board_select
   .selectAll('whatever')
   .data(data_ready)
@@ -418,6 +465,18 @@ svg_board_select
   .attr("stroke", "black")
   .style("stroke-width", "2px")
   .style("opacity", 1)
+  .on("click", function(d) {
+    saved_d_circle_date_board = d
+    saved_this_circle_date_board = this
+    date_column = d.data.key
+    name_column = date_column + "-" + place_column
+    update(dataset_board, name_column)
+    textInCercle2.text(date_column)
+    d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
+      return (color_light(d.data.key))
+    })
+    d3.select(this).attr('fill', "#69779B")
+  })
   .on("mouseover", function(d) {
     date_column = d.data.key
     name_column = date_column + "-" + place_column
@@ -427,6 +486,22 @@ svg_board_select
       return (color_light(d.data.key))
     })
     d3.select(this).attr('fill', "#69779B")
+  })
+  .on("mouseleave", function(d) {
+
+    d3.selectAll(".circle_date_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
+      return (color_light(d.data.key))
+    })
+
+    if (saved_d_circle_date_board != null) {
+      date_column = saved_d_circle_date_board.data.key
+      name_column = date_column + "-" + place_column
+      update(dataset_board, name_column)
+      textInCercle2.text(date_column)
+      d3.select(saved_this_circle_date_board).attr('fill', "#69779B")
+    } else {
+      d3.select(this).attr('fill', "#69779B")
+    }
   })
 
 svg_board_select

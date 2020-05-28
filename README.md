@@ -55,6 +55,7 @@ The Global Cases of COVID-19 here https://coronavirus.jhu.edu/map.html is a nice
 
 ## Milestone 2 (Friday 1st May, 5pm)
 [The report for Milestone 2](Data_Viz_Milestone_2.pdf)
+
 The website is accessible with [this link](https://com-480-data-visualization.github.io/com-480-project-improviz/).
 
 

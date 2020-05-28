@@ -20,6 +20,54 @@ var svg = d3.select("#my_dataviz")
 
 d3.csv("data/crimes_mean.csv", function(data) {
 
+  function mouseover(d) {
+      d3.selectAll("*").transition("movement")
+      d3.selectAll("#BarCercle").attr("fill", "#21252b");
+      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
+      d3.select(this).attr("fill", "#939CAE");
+      var pad_month = "";
+      var pad_day = "";
+
+      if (d.Month < 10) {
+        pad_month = "0"
+      }
+      if (d.Day < 10) {
+        pad_day = "0"
+      }
+      //d3.selectAll("path").on("mouseout", mouseout)
+      return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
+  }
+
+  function mouseout(d) {
+      d3.selectAll("path").on("mouseout", null)
+      d3.selectAll("*").transition("movement")
+      d3.selectAll("#BarCercle").attr("fill", "#21252b");
+      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
+      d3.selectAll("path")
+      .transition("movement")
+      .duration(500)
+      .delay(function(d) {
+        return x(d.Date) * 20000;
+      })
+      .attr("fill", "#444B5B")
+      .on('start', function(d) {
+        var pad_month = "";
+        var pad_day = "";
+        if (d.Month < 10) {
+  	  pad_month = "0"
+        }
+        if (d.Day < 10) {
+  	  pad_day = "0"
+        }
+        textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
+      })
+      .transition()
+      .duration(5000)
+      .delay(function(d) {
+        return 2000;
+      })
+  }
+
   var max_y = 1100;
   var exp = 1.1;
 
@@ -51,7 +99,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
   // X scale
   var x = d3.scaleBand()
     .range([0, 2 * Math.PI]) // X axis goes from 0 to 2pi = all around the circle. If I stop at 1Pi, it will be around a half circle
-    .align(0) // This does nothing ?
+    .align(0)
     .domain(data.map(function(d) {
       return d.Date;
     })); // The domain of the X axis is the list of states.
@@ -73,51 +121,8 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .enter()
     .append("path")
     .attr("fill", "#21252b")
-    .on("mouseover", function(d) {
-      d3.selectAll("*").transition("movement")
-      d3.selectAll("#BarCercle").attr("fill", "#21252b");
-      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
-      d3.select(this).attr("fill", "#939CAE");
-      var pad_month = "";
-      var pad_day = "";
-
-      if (d.Month < 10) {
-        pad_month = "0"
-      }
-      if (d.Day < 10) {
-        pad_day = "0"
-      }
-      return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
-    })
-    .on("mouseout", function(d) {
-      d3.selectAll("*").transition("movement")
-      d3.selectAll("#BarCercle").attr("fill", "#21252b");
-      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
-      d3.selectAll("*")
-      .selectAll("path")
-      .transition("movement")
-      .duration(500)
-      .delay(function(d) {
-        return x(d.Date) * 20000;
-      })
-      .attr("fill", "#444B5B")
-      .on('start', function(d) {
-        var pad_month = "";
-        var pad_day = "";
-        if (d.Month < 10) {
-  	  pad_month = "0"
-        }
-        if (d.Day < 10) {
-  	  pad_day = "0"
-        }
-        textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
-      })
-      .transition()
-      .duration(5000)
-      .delay(function(d) {
-        return 2000;
-      })
-    })
+    .on("mouseover", mouseover)
+    //.on("mouseout", mouseout)
     .attr("id", "BarCercle")
     .attr("d", d3.arc()
       .innerRadius(innerRadius)

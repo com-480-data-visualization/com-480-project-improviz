@@ -69,10 +69,11 @@ The website is accessible with [this link](https://com-480-data-visualization.gi
 ### Datasets
 
 The datasets we used for this project are the following:
-    * Dataset of [crimes from 2001 to 2020](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2).
-    * Dataset of all actual [affordable rental housing](https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developmentss6ha-ppgi).
-    * Dataset of [socio economics indicators from 2008 to 2012](https://data.cityofchicago.org/Health-Human-Services/Census-Data-Selected-socioeconomic-indicators-in-C/kn9c-c2s2).
-    * Dataset of the [location of police stations](https://data.cityofchicago.org/Public-Safety/Police-Stations/z8bn-74gv)
+
+* Dataset of [crimes from 2001 to 2020](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2).
+* Dataset of all actual [affordable rental housing](https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developmentss6ha-ppgi).
+* Dataset of [socio economics indicators from 2008 to 2012](https://data.cityofchicago.org/Health-Human-Services/Census-Data-Selected-socioeconomic-indicators-in-C/kn9c-c2s2).
+* Dataset of the [location of police stations](https://data.cityofchicago.org/Public-Safety/Police-Stations/z8bn-74gv)
 
 ### Tools used
 

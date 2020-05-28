@@ -66,7 +66,7 @@ function update(data, value_nb) {
   // Update the Y axis
   y.domain([0, d3.max(data, function(d) {
     if (savedDataCateg != null) {
-      textBoardBar.text(savedDataCateg.group + " " + savedDataCateg[value_nb])
+      textBoardBar.text(savedDataCateg.group + " " + savedDataCateg[value_nb].substring(0, savedDataCateg[value_nb].length - 2))
     }
 
     //the maximum is between those years
@@ -89,7 +89,9 @@ function update(data, value_nb) {
     .on("mouseover", function(d) {
       savedDataCateg = d
       savedThisCateg = this
-      textBoardBar.text(d.group + " " + d[value_nb])
+      //      place_column.substring(0, place_column.length - 2)
+      d[value_nb]
+      textBoardBar.text(d.group + " " + d[value_nb].substring(0, d[value_nb].length - 2))
       d3.selectAll(".bar_board").attr("fill", "#282A2D")
       d3.select(this).attr('fill', "#69779B")
     })

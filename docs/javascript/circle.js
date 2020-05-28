@@ -34,38 +34,7 @@ d3.csv("data/crimes_mean.csv", function(data) {
       if (d.Day < 10) {
         pad_day = "0"
       }
-      //d3.selectAll("path").on("mouseout", mouseout)
       return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
-  }
-
-  function mouseout(d) {
-      d3.selectAll("path").on("mouseout", null)
-      d3.selectAll("*").transition("movement")
-      d3.selectAll("#BarCercle").attr("fill", "#21252b");
-      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
-      d3.selectAll("path")
-      .transition("movement")
-      .duration(500)
-      .delay(function(d) {
-        return x(d.Date) * 20000;
-      })
-      .attr("fill", "#444B5B")
-      .on('start', function(d) {
-        var pad_month = "";
-        var pad_day = "";
-        if (d.Month < 10) {
-  	  pad_month = "0"
-        }
-        if (d.Day < 10) {
-  	  pad_day = "0"
-        }
-        textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
-      })
-      .transition()
-      .duration(5000)
-      .delay(function(d) {
-        return 2000;
-      })
   }
 
   var max_y = 1100;
@@ -122,7 +91,6 @@ d3.csv("data/crimes_mean.csv", function(data) {
     .append("path")
     .attr("fill", "#21252b")
     .on("mouseover", mouseover)
-    //.on("mouseout", mouseout)
     .attr("id", "BarCercle")
     .attr("d", d3.arc()
       .innerRadius(innerRadius)

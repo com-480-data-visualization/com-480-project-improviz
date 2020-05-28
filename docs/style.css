@@ -29,6 +29,18 @@
   padding-right: 50px;
 }
 
+.button_police {
+  width: 50%;
+  float: left;
+  padding-top: 50px;
+}
+
+.checkmark_right{
+  float: right;
+  width: 50%;
+  height:60%;
+}
+
 
 body {
   margin: 0px;
@@ -364,7 +376,7 @@ select:hover {
 .checkmark_text {
   position: absolute;
   color: #BBBBBB;
-  top: 30%;
+  top: 35%;
   left: 40%;
   height: 100px;
   width: 100px;
@@ -404,6 +416,22 @@ select:hover {
   height: 25px;
   width: 25px;
   background-color: #eee;
+}
+
+/* Create a custom checkbox */
+.checkmark_areas {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  /* padding-left: -15px; */
+  padding-top: -12px;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.areas{
+  padding-left: 80px;
 }
 
 /* On mouse-over, add a grey background color */

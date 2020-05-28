@@ -35,7 +35,7 @@ var margin = {
     left: -10
   },
   width_board = window.innerWidth - margin.left - margin.right - 20,
-  height_board = window.innerHeight * 0.27 - margin.top - margin.bottom;
+  height_board = window.innerHeight * 0.22 - margin.top - margin.bottom;
 
 // append the svg_board object to the body of the page
 var svg_board = d3.select("#the_board_bar")

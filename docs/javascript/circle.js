@@ -5,8 +5,8 @@ var margin = {
     bottom: 100,
     left: 50
   },
-  width = window.innerHeight * 0.6,
-  height = window.innerHeight * 0.6,
+  width = window.innerHeight * 0.8,
+  height = window.innerHeight * 0.8,
   innerRadius = (height - 80) / 2,
   outerRadius = Math.min(width, height) / 2; // the outerRadius goes from the middle of the SVG area to the border
 

@@ -9,18 +9,18 @@ var margin_stream = {
   height_streamgraph = 690 - margin_stream.top - margin_stream.bottom
 
 var months_dict = {
-  0: "January",
-  1: "February",
-  2: "March",
-  3: "April",
-  4: "May",
-  5: "June",
-  6: "July",
-  7: "August",
-  8: "September",
-  9: "October",
-  10: "November",
-  11: "December"
+  0: 'January',
+  1: 'February',
+  2: 'March',
+  3: 'April',
+  4: 'May',
+  5: 'June',
+  6: 'July',
+  7: 'August',
+  8: 'September',
+  9: 'October',
+  10: 'November',
+  11: 'December'
 }
 
 // append the svg object to the body of the page
@@ -44,7 +44,6 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
       return d.date
     }))
     .range([0, 650])
-  //
 
   svg2.append('g')
     .attr('transform', 'translate(0,' + height_streamgraph + ')')
@@ -54,13 +53,8 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
   svg2.selectAll('.tick line').attr('stroke', '#f2f2f2')
   svg2.selectAll('.tick text').attr('opacity', 0)
 
-  // Add X axis label:
-  svg2.append('text')
-    .attr('text-anchor', 'end')
-    .attr('x', width_streamgraph / 2)
-    .attr('y', height_streamgraph - 30)
-    .style('fill', '#FAFAFA')
-    .text('2001-2020')
+  // Add the years under the plot:
+  place_years(svg2, 35, height_streamgraph - 30, width_streamgraph)
 
   // Add Y axis
   var y = d3.scaleLinear()
@@ -94,7 +88,6 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
       .style('stroke', 'white')
       .style('opacity', 1)
       .style('fill', '#69779B')
-
   }
   var mousemove = function (d, i) {
     mouse_pos = d3.mouse(this)
@@ -102,17 +95,16 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     y_val = Math.abs(d[x_pos][1] - d[x_pos][0])
     grp = keys[i]
 
+    //retrieving the month
     month = x_pos % 12
-    year = Math.floor(x_pos/12)
+    year = Math.floor(x_pos / 12)
 
+    //retrieving the year
     month_str = months_dict[month]
     year_str = year + 2001
 
-    console.log(month_str)
-
-
-
-    str = y_val.toString() + " " + grp.toString() + " recorded during the month " + month_str + " " + year_str
+    //setting the text in the tooltip
+    str = y_val.toString() + ' ' + grp.toString() + ' recorded during the month ' + month_str + ' ' + year_str
     Tooltip.text(str)
   }
   var mouseleave = function (d) {
@@ -149,3 +141,17 @@ d3.csv('data/Crimes_by_day_by_type.csv', function (data) {
     .on('mousemove', mousemove)
     .on('mouseleave', mouseleave)
 })
+
+function place_years (svg, x, y, max_width) {
+  var step_size = max_width / 19
+  for (var i = 0; i < 19; i++) {
+    var year = 2001 + i
+
+    svg.append('text')
+      .attr('text-anchor', 'end')
+      .attr('x', x + step_size * i)
+      .attr('y', y)
+      .style('fill', '#FAFAFA')
+      .text(year.toString())
+  }
+}

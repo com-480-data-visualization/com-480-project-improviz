@@ -53,21 +53,30 @@ There are over 7 000 000 entries, which could slow down the navigation on the ma
 
 The Global Cases of COVID-19 here https://coronavirus.jhu.edu/map.html is a nice example of what can be done. Having additional plots of information around the main data. With this in mind, an idea would be to be able to personalize what is being displayed.
 
-**10% of the final grade**
-
-
 ## Milestone 2 (Friday 1st May, 5pm)
 [The report for Milestone 2](Data_Viz_Milestone_2.pdf)
-The website is accessible with [this link](https://com-480-data-visualization.github.io/com-480-project-improviz/). 
-
-**10% of the final grade**
-
-
+The website is accessible with [this link](https://com-480-data-visualization.github.io/com-480-project-improviz/).
 
 
 ## Milestone 3 (Thursday 28th May, 5pm)
 
-**80% of the final grade**
+### Deliverables
 
+* The process book for our final project can be access directly [here](Process book.pdf).
+* The website can be accessed [here](https://com-480-data-visualization.github.io/com-480-project-improviz/).
+* The video presentation can be accessed [here](https://www.youtube.com/watch?v=RcH7NNnf80k&feature=youtu.be)
 
+### Datasets
 
+The datasets we used for this project are the following:
+    * Dataset of [crimes from 2001 to 2020](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2)
+    * Dataset of all actual [affordable rental housing](https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developmentss6ha-ppgi)
+    * Dataset of [socio economics indicators from 2008 to 2012](https://data.cityofchicago.org/Health-Human-Services/Census-Data-Selected-socioeconomic-indicators-in-C/kn9c-c2s2)
+    * Dataset of the [location of police stations](https://data.cityofchicago.org/Public-Safety/Police-Stations/z8bn-74gv)
+
+### Tools used
+
+* Python with the pandas library
+* D3js
+* Leaflet
+* Jawg

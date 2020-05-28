@@ -488,3 +488,15 @@ select:hover {
 	float: right;
 	width: 50%;
 }
+
+.date-display {
+  float: right;
+}
+
+.ym-display {
+  color: white;
+  opacity: 0.8;
+  z-index: 1000;
+  font-size:2em;
+  position: relative;
+}

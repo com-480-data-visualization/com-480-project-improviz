@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
 var margin_stream = {
-    top: 20,
+    top: 0,
     right: 30,
     bottom: 30,
     left: 60

@@ -59,6 +59,7 @@ function create_map () {
     maxZoom: 22,
     minZoom: 10
   })
+  community_areas_delimiter = L.geoJSON(areas, {style: ca_style}).on('mouseover', function(e) {var popup = L.popup().setLatLng(e.latlng).setContent(e.sourceTarget.feature.properties.community).openOn(mymap);});
 
   // set the map image
   mymap.addLayer(theme)
@@ -71,6 +72,25 @@ function clear_map () {
 }
 
 // -------------- DISPLAY HEATMAPS POLICE STATIONS ---------------------
+
+    function ca_style (feature) {
+      return {
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        fillOpacity: 0,
+        fillColor: 'white'
+      }
+    }
+
+function toggleCommAreas(data) {
+  if (data.checked == true) {
+    current_layers.push(community_areas_delimiter.addTo(mymap));
+  } else {
+    mymap.removeLayer(community_areas_delimiter);
+  }
+}
+
 function display_one_heatmap (data) {
   if (current_heatmap != null) {
     mymap.removeLayer(current_heatmap)
@@ -212,19 +232,20 @@ function show_areas () {
       })
 
       nb_crimes_list[area_id.toString()] = nb_crimes;
-      return nb_crimes > 3 ? '#EE3E32' :
-       nb_crimes > 2 ? '#F68838' :
-       nb_crimes > 1 ? '#FBB021' :
-       nb_crimes > 0 ? '#1B8A5A' :
-                  '#1D4877'
+      return nb_crimes > 8 ? '#3D1744' :
+       nb_crimes > 6 ? '#521F5A' :
+       nb_crimes > 4 ? '#763A76' :
+       nb_crimes > 2 ? '#916191' :
+       nb_crimes > 0 ? '#A87DA8' :
+                  '#FFFFFF'
     }
 
     function style (feature) {
       return {
         weight: 2,
-        opacity: 0.30,
+        opacity: 0.40,
         color: 'white',
-        fillOpacity: 0.15,
+        fillOpacity: 0.60,
         fillColor: color_areas_by_filter(date, type, feature.properties.area_numbe)
       }
     }

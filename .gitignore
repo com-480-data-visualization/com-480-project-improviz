@@ -5,3 +5,5 @@ datasets/.~*
 *.swp
 */__pycache__/
 docs/data/big_data
+preprocessing/datasets/crimes.csv
+preprocessing/datasets/big_datasets

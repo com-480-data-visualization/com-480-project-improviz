@@ -62,21 +62,21 @@ The website is accessible with [this link](https://com-480-data-visualization.gi
 
 ### Deliverables
 
-* The process book for our final project can be access directly [here](Process book.pdf).
+* The process book for our final project can be access directly [here](Process_book.pdf).
 * The website can be accessed [here](https://com-480-data-visualization.github.io/com-480-project-improviz/).
-* The video presentation can be accessed [here](https://www.youtube.com/watch?v=RcH7NNnf80k&feature=youtu.be)
+* The video presentation can be accessed [here](https://www.youtube.com/watch?v=RcH7NNnf80k&feature=youtu.be).
 
 ### Datasets
 
 The datasets we used for this project are the following:
-    * Dataset of [crimes from 2001 to 2020](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2)
-    * Dataset of all actual [affordable rental housing](https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developmentss6ha-ppgi)
-    * Dataset of [socio economics indicators from 2008 to 2012](https://data.cityofchicago.org/Health-Human-Services/Census-Data-Selected-socioeconomic-indicators-in-C/kn9c-c2s2)
+    * Dataset of [crimes from 2001 to 2020](https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2).
+    * Dataset of all actual [affordable rental housing](https://data.cityofchicago.org/Community-Economic-Development/Affordable-Rental-Housing-Developmentss6ha-ppgi).
+    * Dataset of [socio economics indicators from 2008 to 2012](https://data.cityofchicago.org/Health-Human-Services/Census-Data-Selected-socioeconomic-indicators-in-C/kn9c-c2s2).
     * Dataset of the [location of police stations](https://data.cityofchicago.org/Public-Safety/Police-Stations/z8bn-74gv)
 
 ### Tools used
 
-* Python with [Pandas](https://pandas.pydata.org/)
-* [D3js](https://d3js.org/)
-* [Leaflet](https://leafletjs.com/)
-* [Jawg](https://www.jawg.io/fr/)
+* Python with [Pandas](https://pandas.pydata.org/)..
+* [D3js](https://d3js.org/): library for data visualization in Javascript.
+* [Leaflet](https://leafletjs.com/): tool for map visualization in Javascript.
+* [Jawg](https://www.jawg.io/fr/): tool for map visualization.

@@ -266,6 +266,7 @@ function display_sdate (data, sdate) {
     month_sdatemap = 1
     clearInterval(interval_sdatemap)
     enableMapButtons()
+    current_layers.push(current_sdatemap)
   } else {
     if (current_sdatemap != null) {
       mymap.removeLayer(current_sdatemap)

@@ -35,7 +35,7 @@ var margin = {
     left: -10
   },
   width_board = window.innerWidth - margin.left - margin.right - 20,
-  height_board = window.innerHeight * 0.22 - margin.top - margin.bottom;
+  height_board = window.innerHeight * 0.27 - margin.top - margin.bottom;
 
 // append the svg_board object to the body of the page
 var svg_board = d3.select("#the_board_bar")
@@ -350,7 +350,7 @@ svg_board_select
     name_column = date_column + "-" + place_column
     update(dataset_board, name_column)
     update_down_left(dataset_board_down_left, place_column.substring(0, place_column.length - 2))
-    textInCercle1.text("Area :" + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
+    textInCercle1.text("Area: " + dataset_district_name[place_column.substring(0, place_column.length - 2) - 1]["COMMUNITY AREA NAME"])
     textInCercle2.text(date_column)
     d3.selectAll(".circle_categ_board").style("stroke-width", "2px").attr("stroke", "black").attr('fill', function(d) {
       return (color_dark(d.data.key))

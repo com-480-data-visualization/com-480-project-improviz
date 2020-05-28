@@ -78,7 +78,6 @@ d3.csv("data/crimes_mean.csv", function(data) {
       d3.selectAll("#BarCercle").attr("fill", "#21252b");
       d3.selectAll("#BarCercle2").attr("fill", "#21252b");
       d3.select(this).attr("fill", "#939CAE");
-      suffix = 'th';
       var pad_month = "";
       var pad_day = "";
 
@@ -90,9 +89,37 @@ d3.csv("data/crimes_mean.csv", function(data) {
       }
       return textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
     })
-    .on("mouseout", function(d) {})
+    .on("mouseout", function(d) {
+      d3.selectAll("*").transition("movement")
+      d3.selectAll("#BarCercle").attr("fill", "#21252b");
+      d3.selectAll("#BarCercle2").attr("fill", "#21252b");
+      d3.selectAll("*")
+      .selectAll("path")
+      .transition("movement")
+      .duration(500)
+      .delay(function(d) {
+        return x(d.Date) * 20000;
+      })
+      .attr("fill", "#444B5B")
+      .on('start', function(d) {
+        var pad_month = "";
+        var pad_day = "";
+        if (d.Month < 10) {
+  	  pad_month = "0"
+        }
+        if (d.Day < 10) {
+  	  pad_day = "0"
+        }
+        textNbCrimes.text(parseInt(d.Crimes)), textElements.text("Average number of crimes the " + pad_day + d.Day + "/" + pad_month + d.Month);
+      })
+      .transition()
+      .duration(5000)
+      .delay(function(d) {
+        return 2000;
+      })
+    })
     .attr("id", "BarCercle")
-    .attr("d", d3.arc() // imagine your doing a part of a donut plot
+    .attr("d", d3.arc()
       .innerRadius(innerRadius)
       .outerRadius(function(d) {
         return y((d['Crimes'] - 500) ** exp);

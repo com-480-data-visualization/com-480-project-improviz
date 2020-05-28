@@ -97,7 +97,11 @@ body {
   font-size: 10px;
   font-style: italic;
   padding-bottom: 20px;
+  text-align: center;
+  background-color: DarkGrey;
+  color: black;
 }
+
 
 
 #circle_text{
@@ -435,4 +439,24 @@ select:hover {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.box_left {
+	float: left;
+	width: 50%;
+}
+
+.box_right {
+	float: right;
+	width: 50%;
+}
+
+.subbox_left {
+	float: left;
+	width: 50%;
+}
+
+.subbox_right {
+	float: right;
+	width: 50%;
 }

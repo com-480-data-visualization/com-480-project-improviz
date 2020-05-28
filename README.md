@@ -76,7 +76,7 @@ The datasets we used for this project are the following:
 
 ### Tools used
 
-* Python with the pandas library
-* D3js
-* Leaflet
-* Jawg
+* Python with [Pandas](https://pandas.pydata.org/)
+* [D3js](https://d3js.org/)
+* [Leaflet](https://leafletjs.com/)
+* [Jawg](https://www.jawg.io/fr/)

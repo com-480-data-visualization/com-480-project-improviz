@@ -78,6 +78,10 @@ This gives a nice overall idea of what can be expected when using the filter mod
         </div>
           <div class="centered1">
            <button class="btn btn-police" id="show_police_station_button" onclick="show_police_stations()">Animate</button>
+        <label class="container_checkbox">
+          <input id="checkbox_areas" type="checkbox" value="2" onclick="toggleCommAreas(this)">
+          <span class="checkmark"></span><span class="checkmark_text">Toggle Community Areas delimiter</span>
+        </label>
           </div>
 	</div>
 
@@ -124,9 +128,14 @@ This gives a nice overall idea of what can be expected when using the filter mod
       <script src="javascript/leaflet-providers.js"></script>
       <script src="javascript/leaflet-heat.js"></script>
       <script src="javascript/map.js"></script>
-      oijsdoijdsoijfoij
     </div>
     <div id="cyear"></div>
+  </div>
+  
+  <div class="test_grey">
+    We can observe that crime density doesn't seem to be affected by police stations proximity. But is more linked to the geographical location in Chicago, for instance we see that the density is high in central Chicago. More specifically in Near North Side, which is the northernmost part of central Chicago and the Loop which is the main section of Downtown Chicago.
+    Another interesting point is that the crime density tends to be lower the more we get close to the present day. This could be due to a first adaptation by the police force, which could dispatch more efficiently it's manpower by using the data it collects.
+    This brings us to the next point, in which some socio-economic statistics can be observed on the Community Areas which interest us.
   </div>
 
   <!-- Statistical section part 3 -->

@@ -5,6 +5,23 @@
  @orange: #d4613c;
  @light-black: #393e46; */
 
+.circle_plot{
+    float: left;
+    width: 40%;
+    height: 100%;
+    padding-left: 50px;
+    /* margin: auto; */
+}
+
+.text_circle{
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding-top: 10%;
+  text-align: center;
+  padding-right: 50px;
+}
+
 
 body {
   margin: 0px;
@@ -41,11 +58,6 @@ body {
   padding-right: 30vw;
 }
 
-.circle{
-  background: none;
-  color: #949eb8;
-}
-
 .white_map{
   padding-top: 20px;
   color: #f4f4f4;
@@ -76,7 +88,8 @@ body {
 #part0{
   background-image: url('img/chicago.jpg');
   background-size: cover;
-  height: 110vh;
+  background-attachment: scroll;
+  height: 120vh;
   background-color: #282A2D;
 }
 
